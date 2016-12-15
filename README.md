@@ -1,5 +1,5 @@
-Ten Points Project Plan
-1. Team
+#Project Plan
+##1. Team
 604998 Susanna Nevalainen
 546807 Rohan Krishnakumar
 464840 Nazia Hussain
@@ -144,8 +144,4 @@ Due Date	Feature Completion
 We will use the example game provided to test the game service. The UI will be tested using different browsers (Chrome/Firefox/IE) on different platforms (Mobile/Tablets/Desktops).
 6. Risk Analysis
 In the worst case we will not have time to finish even basic features but it is not likely if we start according to the plan and stick to it. The consequences would be lower grade than expected.
-Another risk is that we are implementing same features without knowing that someone else is doing the same. As we have divided the tasks beforehand, this is not very likely but in case schedule will change this is a possible risk. Consequences would be lost time in the development. 
-
-
-
-
+Another risk is that we are implementing same features without knowing that someone else is doing the same. As we have divided the tasks beforehand, this is not very likely but in case schedule will change this is a possible risk. Consequences would be lost time in the development.
