@@ -1,11 +1,14 @@
 #Project Plan
-##1. Team
+
+## 1. Team
 604998 Susanna Nevalainen
 546807 Rohan Krishnakumar
 464840 Nazia Hussain
-2. Goal
+
+## 2. Goal
 In this project we will be building an online game store for JavaScript games. The game store will be a marketplace where players can buy games and developers can sell their games on the platform.
-Planned Features:
+
+### Planned Features:
 - Registration
 As a developer: add games to their inventory, see list of game sales
 As a player: buy games, play games, see game high scores and record their score to it
