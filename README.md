@@ -138,38 +138,37 @@ So far, we have decided to collaborate over email. Moreover, we will be meeting 
     10-02-2016	Home View and Searching games
     15-02-2016	Final touch up and bug fixes
 
-### Following diagram outlines a rough division of work:
-    ![alt text] (files/note/3289/Screen_Shot_2016-12-16_at_4.04.10.png?raw=true "Division of work")
-|Topic                               |  Due to	                | Who does?  |
-|------------------------------------|:------------------------:|------------:
-|Project Plan, Discussion - Planning |	Week 50	| All |
-|Login, Authentication Module |	Week 2	| Susanna | 
-|Database creation	| Week 2	| Rohan |
-|Heroku deployment	| Week 2	| Nazia |
-|Basic player functionalities	| Week 3-5	| Susanna |
+### Following table outlines a rough division of work:
+|Topic                        |  Due to	                | Who does?  |
+|-----------------------------|:-----------------------:|------------:
+|***Project Plan, Discussion - Planning*** |	Week 50	| All |
+|***Login, Authentication Module*** |	Week 2	| Susanna | 
+|***Database creation***	| Week 2	| Rohan |
+|***Heroku deployment***	| Week 2	| Nazia |
+|***Basic player functionalities***	| Week 3-5	| Susanna |
 |Buying games	| Week 3-5	| Susanna |
 |Payment	| Week 3-5	| Susanna |
 |Play games	| Week 3-5	| Susanna |
 |Security restrictions	| Week 3-5	| Susanna |
 |Search	| Week 3-5	| Susanna |
-|Basic Developer Functionalities	| Week 3-5	| Rohan |
+|***Basic Developer Functionalities***	| Week 3-5	| Rohan |
 |Add a game (URL)	| Week 3-5	| Rohan |
 |Set price for the game	| Week 3-5	| Rohan |
 |remove/modify game	| Week 3-5	| Rohan |
 |Basic game inventory & sales statistics	| Week 3-5	| Rohan |
 |Security restrictions	| Week 3-5	| Rohan |
-|Game/service interaction	| Week 3-5	| Nazia |
-|- Score postMessage to the parent window	| Week 3-5	| Nazia |
-|- ranking list	| Week 3-5	| Nazia |
-|- player score history	| Week 3-5	| Nazia |
-|- Messages from service to the game	| Week 3-5	| Nazia |
-|Additional Features	| Week 6	| All |
+|***Game/service interaction***	| Week 3-5	| Nazia |
+|Score postMessage to the parent window	| Week 3-5	| Nazia |
+|Ranking list	| Week 3-5	| Nazia |
+|Player score history	| Week 3-5	| Nazia |
+|Messages from service to the game	| Week 3-5	| Nazia |
+|***Additional Features***	| Week 6	| All |
 |3rd Party Login - Additional Modules	| Week 6	| Nazia |
 |Social Media Sharing	| Week 6	| Susanna |
 |Mobile Friendly	| Week 2-6	 | All |
-|Frontend: style, fonts, colors	| Week 6-7	| Susanna |
-|Testing	| Week 6-7	| All |
-|Documentation and presentation	| Week 7	| All |
+|***Frontend: style, fonts, colors***	| Week 6-7	| Susanna |
+|***Testing***	| Week 6-7	| All |
+|***Documentation and presentation***	| Week 7	| All |
 
 ## 5. Testing
 We will use the example game provided to test the game service. The UI will be tested using different browsers (Chrome/Firefox/IE) on different platforms (Mobile/Tablets/Desktops).
