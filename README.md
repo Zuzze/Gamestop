@@ -129,7 +129,7 @@ We will be focusing on the basic features and goals first. We start with the mod
 So far, we have decided to collaborate over email. Moreover, we will be meeting in the campus every alternate day to discuss about the current status of the project and take appropriate actions. We will distribute work equally amongst the team members.
 
 
-## Following is the rough timeline for the project:
+### Following is the rough timeline for the project:
 
     Due Date	Feature Completion
     08-01-2016	Heroku deployment, Basic HTML Views, Models, and Authentication
@@ -137,6 +137,9 @@ So far, we have decided to collaborate over email. Moreover, we will be meeting 
     30-01-2016	Payment Functionality + Save Load features
     10-02-2016	Home View and Searching games
     15-02-2016	Final touch up and bug fixes
+
+### Following diagram outlines a rough division of work:
+    ![alt text] https://git.niksula.hut.fi/files/note/3289/Screen_Shot_2016-12-16_at_4.04.10.png
 
 
 ## 5. Testing
