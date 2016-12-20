@@ -139,7 +139,7 @@ So far, we have decided to collaborate over email. Moreover, we will be meeting 
     15-02-2016	Final touch up and bug fixes
 
 ### Following diagram outlines a rough division of work:
-    ![alt text] https://git.niksula.hut.fi/files/note/3289/Screen_Shot_2016-12-16_at_4.04.10.png
+    ![alt text] (https://git.niksula.hut.fi/files/note/3289/Screen_Shot_2016-12-16_at_4.04.10.png "Division of work")
 
 
 ## 5. Testing
