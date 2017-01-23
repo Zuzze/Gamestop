@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head> <title>Developer - Home </title> </head>
-<body> Add game </body>
+<body> Your games <br>
+    {% for game in games %}
+        {{game.title}}
+        <br>
+    {% endfor %}
+</body>
 </html>

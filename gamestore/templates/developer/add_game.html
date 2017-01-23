@@ -1,0 +1,12 @@
+
+<!DOCTYPE html>
+<html>
+<head> <title>Developer - Home </title> </head>
+<body> Welcome {{name}}, <br>
+    Add game:
+    <form method="post" action=""> {% csrf_token %}
+        {{form.as_p}} <br>
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>
