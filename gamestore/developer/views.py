@@ -14,7 +14,10 @@ def index(request, username):
     dev_ = Developer.objects.get(name=username)
     for game_ in dev_.games.all():
         print(game_.title)
-    context = { 'games' : dev_.games.all() }
+    context = {
+    'games' : dev_.games.all(),
+    'name' : username,
+    }
     return render (request, 'developer/index.html', context)
 
 """
@@ -32,6 +35,7 @@ def add_game(request, username):
             return HttpResponseRedirect('home')
     else:
         form = AddGameForm()
+
     context = {
         'name' : username,
         'form' : form,

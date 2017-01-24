@@ -6,5 +6,9 @@
         {{game.title}}
         <br>
     {% endfor %}
+
+    <form method="post" action=""> {% csrf_token %}
+        <input type="submit" value="Add Game" />
+    </form>
 </body>
 </html>
