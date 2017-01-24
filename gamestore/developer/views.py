@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render, render_to_response
+from django.contrib.auth.decorators import login_required
 
 from .models import Developer
 from gamedata.models import Game
@@ -9,22 +10,23 @@ from .forms import AddGameForm
 """
 Developer home page.
 """
-def index(request, username):
-    print(username)
-    dev_ = Developer.objects.get(name=username)
+@login_required
+def index(request):
+    dev_ = Developer.objects.get(name=request.user)
     for game_ in dev_.games.all():
         print(game_.title)
     context = {
     'games' : dev_.games.all(),
-    'name' : username,
+    'name' : request.user,
     }
     return render (request, 'developer/index.html', context)
 
 """
 Developer add game
 """
-def add_game(request, username):
-    dev_ = Developer.objects.get(name=username)
+@login_required
+def add_game(request):
+    dev_ = Developer.objects.get(name=request.user)
     if request.method == 'POST':
         form = AddGameForm(request.POST)
         if form.is_valid():
@@ -37,7 +39,7 @@ def add_game(request, username):
         form = AddGameForm()
 
     context = {
-        'name' : username,
+        'name' : request.user,
         'form' : form,
     }
 
