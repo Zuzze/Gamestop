@@ -3,4 +3,10 @@ from django.http import HttpResponse
 #testing
 
 def index(request):
-    return HttpResponse("Welcome to homepage of game store")
+    return render(request, 'homepage/index.html', {})
+
+def login(request):
+    return render(request, 'static/login.html', {})
+
+def register(request):
+    return render(request, 'static/register.html', {})
