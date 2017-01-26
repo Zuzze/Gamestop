@@ -12,7 +12,7 @@
     <!--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><!--added-->
     <!--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"><!--added-->
 
-    <title>Home</title>
+    <title>Welcome {{username}}</title>
 
     <!-- Bootstrap core CSS -->
     <!--<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
@@ -122,20 +122,25 @@
 
       <!-- Three columns of text below the carousel -->
       <div class="row">
+      {% if not user.is_authenticated %}
         <div class="col-md-6">
-          <!--<img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">-->
           <h2>Login</h2>
           <p></p>
-          <p><a id="login-button" class="btn btn-default" href="/home/login/" role="button">Login page &raquo;</a><a class="btn btn-default" href="#" role="button">Login using Gmail &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
+          <p><a id="login-button" class="btn btn-default" href="/accounts/login/" role="button">Login page &raquo;</a><a class="btn btn-default" href="#" role="button">Login using Gmail &raquo;</a></p>
+        </div>
         <div class="col-md-6">
-          <!--<img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">-->
           <h2>Register</h2>
           <p></p>
-          <p><a id="register-button" class="btn btn-default" href="/home/register/" role="button">Registration page &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-
+          <p><a id="register-button" class="btn btn-default" href="/accounts/register/" role="button">Registration page &raquo;</a></p>
+        </div>
+      {% else %}
+      <div class="col-md-6">
+          <h2>Logout</h2>
+          <p></p>
+          <p><a id="logout-button" class="btn btn-default" href="/accounts/logout/" role="button">Logout &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      {% endif %}
+  </div><!-- /.row -->
 
       <!-- START THE FEATURETTES -->
 

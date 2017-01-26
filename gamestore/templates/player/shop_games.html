@@ -10,7 +10,7 @@
     <link rel="icon" href="../../favicon.ico">
     <!--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><!--added-->
     <!--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"><!--added-->
-    <title>Player Profile</title>
+    <title>Welcome {{username}}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +48,6 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="/games/">Games</a></li>
               <li><a href="/player/">Profile</a></li>
-              <li><a href="/player/shop/">Shop for Games</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -63,9 +62,11 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron" align="center">
-            <h1>Player Name</h1>
-            <p>Statistic 1</p>
-            <p>Statistic 2</p>
+             <ul>
+             {% for game in all_games %}
+             <p><li><input type="checkbox"> {{game.title}} </li></p>
+             {% endfor %}
+             </ul>
           </div>
 
           <div class="row">

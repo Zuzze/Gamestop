@@ -7,26 +7,28 @@ from .models import Developer
 from gamedata.models import Game
 from .forms import AddGameForm
 
-"""
-Developer home page.
-"""
 @login_required
 def index(request):
-    dev_ = Developer.objects.get(name=request.user)
-    for game_ in dev_.games.all():
-        print(game_.title)
+    try:
+        dev_ = Developer.objects.get(name=request.user)
+    except Exception as e:
+        print(e)
+        return HttpResponse("Bad page")
+
     context = {
-    'games' : dev_.games.all(),
-    'name' : request.user,
+        'games' : dev_.games.all(),
+        'name' : request.user,
     }
     return render (request, 'developer/index.html', context)
 
-"""
-Developer add game
-"""
 @login_required
 def add_game(request):
-    dev_ = Developer.objects.get(name=request.user)
+    try:
+        dev_ = Developer.objects.get(name=request.user)
+    except Exception as e:
+        print(e)
+        return HttpResponse("Bad page")
+
     if request.method == 'POST':
         form = AddGameForm(request.POST)
         if form.is_valid():
@@ -34,7 +36,7 @@ def add_game(request):
             game_url_ = form.cleaned_data['game_url']
             new_game_ = Game(title=game_title_, url=game_url_, dev=dev_)
             new_game_.save()
-            return HttpResponseRedirect('home')
+            return HttpResponseRedirect('/dev/')
     else:
         form = AddGameForm()
 

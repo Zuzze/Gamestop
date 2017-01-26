@@ -67,33 +67,14 @@
           </div>
 
           <div class="row">
+            {% for game in all_games %}
             <div class="col-xs-6 col-lg-4">
-              {% include "games/gamecard.html" %}
+                <h2 align="center">{{game.title}}</h2>
+                <img align="center" src="http://gameworldscamp.com/wp-content/uploads/2015/07/WebCircle_3.png"</img>
+                <p>This description describes the game right here </p>
+                <p><a class="btn btn-default" href="#" role="button">4,99€ &raquo;</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              {% include "games/gamecard.html" %}
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              {% include "games/gamecard.html" %}
-              </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              {% include "games/gamecard.html" %}
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              {% include "games/gamecard.html" %}
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              {% include "games/gamecard.html" %}
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              {% include "games/gamecard.html" %}
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              {% include "games/gamecard.html" %}
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              {% include "games/gamecard.html" %}
-            </div><!--/.col-xs-6.col-lg-4-->
+            {% endfor %}
           </div><!--/row-->
         </div><!--/.col-xs-12.col-sm-9-->
 

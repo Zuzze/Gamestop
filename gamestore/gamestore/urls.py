@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
+    url(r'^', include('homepage.urls')),
     url(r'^home/', include('homepage.urls')),
     url(r'^dev/', include('developer.urls')),
     url(r'^player/', include('player.urls')),
