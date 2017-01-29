@@ -48,7 +48,6 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="/games/">Games</a></li>
               <li><a href="/player/">Profile</a></li>
-              <li><a href="/player/shop/">Shop for Games</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -64,13 +63,21 @@
           </p>
           <div class="jumbotron" align="center">
             <h1>Player Name</h1>
-            <p>Statistic 1</p>
-            <p>Statistic 2</p>
           </div>
 
           <div class="row">
             <div class="col-xs-6 col-lg-4">
-              <img src="https://thebraemargamer.files.wordpress.com/2012/11/1442736216.png" alt="Technology vector designed by Freepik"/>
+              <h2>My Game Collection</h2>
+              <div class="row">
+                {% for game in all_games %} <!-- CHANGE THIS TO USER'S OWN GAMES-->
+                <div class="col-xs-6 col-lg-4">
+                    <h2 align="center">{{game.title}}</h2>
+                    <img align="center" src="http://gameworldscamp.com/wp-content/uploads/2015/07/WebCircle_3.png"</img>
+                    <p>This description describes the game right here </p>
+                    <p><a class="btn btn-default" href="#" role="button">Play &raquo;</a></p>
+                </div><!--/.col-xs-6.col-lg-4-->
+                {% endfor %}
+              </div><!--/row-->
             </div><!--/.col-xs-6.col-lg-4-->
           </div><!--/row-->
         </div><!--/.col-xs-12.col-sm-9-->

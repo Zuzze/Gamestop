@@ -54,8 +54,6 @@
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/games/">Games</a></li>
-        <li><a href="/profile/">Profile</a></li>
-        <li><a href="/contact/">Contact</a></li>
       </ul>
     </div><!-- /.nav-collapse -->
   </div><!-- /.container -->
@@ -68,7 +66,7 @@
 
       <div class="row featurette">
         <div align="center" class="col-md-7">
-          <h2 class="featurette-heading">Register<span class="text-muted"></span></h2>
+          <h2 class="featurette-heading">Login<span class="text-muted"></span></h2>
           <p class="lead">Welcome to GameStop</p>
           <form method="post" action="" align ="center"> {% csrf_token %}
               {{form.as_p}} <br>
