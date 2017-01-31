@@ -9,3 +9,9 @@ def games(request):
         'all_games' : Game.objects.all()
     }
     return render(request, 'games/games.html', context)
+
+def game(request):
+    context = {
+        'all_games' : Game.objects.all()
+    }
+    return render(request, 'games/game.html', context)

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<!--certain game instance not added yet-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <!--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><!--added-->
+    <!--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"><!--added-->
+
+    <title>Game description page</title>
+
+    <!-- Bootstrap core CSS -->
+    <!--<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional fonts -->
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="{% static "css/carousel.css" %}" >
+
+  <!--social media sharing-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
+<b:if cond='data:blog.pageType == &quot;item&quot;'>
+<style type='text/css'>
+/*<![CDATA[*/
+	#w2bSocialFloat {clear:both;padding: 6px 0;display:block;background:#FFFFFF;}
+	#w2bSocialFloat td{padding:4px;margin:0;border:none;}
+	#w2bSocialFloat td iframe{max-width:82px;width:82px !important;}
+	#w2bSocialFloat.w2bFloatSocial{position: fixed;top:0;z-index:9999999;border-bottom:1px solid #ccc;-webkit-box-shadow:0 1px 1px rgba(0,0,0,0.15);-moz-box-shadow:0 1px 1px rgba(0,0,0,0.15);box-shadow:0 1px 1px rgba(0,0,0,0.15);}
+/*]]>*/
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+// Set the Top Offset
+$theOffset = 0;
+
+jQuery(document).ready(function(b){var a=b("#w2bSocialFloat");a.wrap('<div id="w2bSocialPlaceholder"></div>').closest("#w2bSocialPlaceholder").height(a.outerHeight());a.width(a.outerWidth());e=a.offset().top-$theOffset;b("#w2bSocialFloat iframe[src*=plusone]").closest("div").css("max-width","82px");b(window).scroll(function(){d=b(this).scrollTop();d>=e?a.addClass("w2bFloatSocial"):a.removeClass("w2bFloatSocial");f=b(".post");if(f.length!=0){c=f.outerHeight()+f.offset().top;d>=c?a.stop().animate({top:"-150px"}):a.stop().animate({top:$theOffset+"px"})}else d>=e?a.css("top",$theOffset+"px"):a.css("top","0")})});
+/*]]>*/
+</script>
+<script type="text/javascript">
+/*<![CDATA[*/
+	// Twitter
+	(function(a,b,c){var d=a.getElementsByTagName(b)[0];if(!a.getElementById(c)){a=a.createElement(b);a.id=c;a.src="//platform.twitter.com/widgets.js";d.parentNode.insertBefore(a,d)}})(document,"script","twitter-wjs");
+	// Google + (plus)
+	(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="https://apis.google.com/js/plusone.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();
+/*]]>*/
+</script>
+</b:if>
+  </head>
+
+
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/home/">GameStop</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/games/">Games</a></li>
+            <li><a href="/player/">Profile</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <h2>Price {{game.price}} &euro;</h2>
+        <h2>Released by {{game.dev}} </h2>
+      {% if not user.is_authenticated %}
+        <div class="col-md-6">
+          <p></p>
+          <p><a id="buy-button" class="btn btn-default" href="/accounts/login/" role="button">Buy &raquo;</a>
+        </div>
+      {% endif %}
+    </div><!-- /.row -->
+
+      <!-- START THE FEATURETTES -->
+      <!--Game information-->
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Game Name<span class="text-muted"></span></h2>
+          <p class="lead"> {{game.description}}</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive center-block" src="https://image.freepik.com/free-vector/young-people-with-virtual-reality-glasses_23-2147592958.jpg" alt="Generic placeholder image">
+        </div>
+      </div>
+
+      <!-- /END THE FEATURETTES -->
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    <!--social media sharing-->
+    <b:if cond='data:blog.pageType == &quot;item&quot;'>
+    <div id="w2bSocialFloat" class="w2bSocialFloat">
+    <table  width="20%" class="w2bSocialFloat">
+    	<tr>
+        <td>
+          <p></p>
+       </td>
+    		<td>
+    			<a href="https://twitter.com/share" class="twitter-share-button" expr:data-url="data:post.url" expr:data-text="data:post.title">Tweet</a>
+    		</td>
+    		<td>
+    			<div class="g-plusone" data-size="medium" expr:data-href="data:post.url"></div>
+    		</td>
+    	</tr>
+    </table>
+    </div>
+    </b:if>
+
+    <!-- FOOTER -->
+    <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+      <p align="center">&copy; 2017 Nadia, Rohan & Susanna &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+  </body>
+</html>
