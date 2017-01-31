@@ -16,9 +16,15 @@ def login_view(request):
             password_ = form.cleaned_data['password']
             user = authenticate(username=username_, password=password_)
             if user is None:
-                return HttpResponse("No such user!")
+                context = { 'form': form,
+                'message': 'Incorrect username or password. Try again.',
+                }
+                return render(request, "accounts/login.html", context)
             login(request, user)
-            return render(request, "developer/index.html")
+            if Developer.objects.get(name=user):
+                return HttpResponseRedirect("/dev/")
+            elif Player.objects.get(name=user):
+                return HttpResponseRedirect("/player/")
     else:
         form = LoginForm()
 
@@ -27,7 +33,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return render(request, 'homepage/index.html')
+    return HttpResponseRedirect("/home/")
 
 def register_view(request):
     if request.method == 'POST':
@@ -41,10 +47,13 @@ def register_view(request):
             if (user_type_ == '1'):
                 dev_ = Developer(name=username_)
                 dev_.save()
+                url = "developer/index.html"
             else:
                 player_ = Player(name=username_)
                 player_.save()
-        return HttpResponse("Account created")
+                url = "player/profile.html"
+            login(request, user)
+        return render(request, url)
 
     else:
         form = RegistrationForm()

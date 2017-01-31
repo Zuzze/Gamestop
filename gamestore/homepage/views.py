@@ -1,14 +1,16 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-#testing
+from django.http import HttpResponse, HttpResponseRedirect
+
+from developer.models import Developer
+from player.models import Player
 
 def index(request):
-    context = {
-        'user' : request.user
-    }
     if request.user.is_authenticated():
-        context['username'] = request.user
-    return render(request, 'homepage/index.html', context)
+        if Developer.objects.get(name=request.user):
+            return HttpResponseRedirect('/dev/')
+        elif Player.objects.get(name=request.user):
+            return HttpResponseRedirect('/player/')
+    return render(request, 'homepage/index.html')
 
 def login(request):
     return render(request, 'static/login.html', {})
