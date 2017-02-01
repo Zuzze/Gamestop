@@ -6,10 +6,19 @@ Add Game to GameStop
 
 
 {% block content %}
-<h2 class="lead">Add your game</h2>
-<img align="center" alt="decoration" width="20%" src="https://image.freepik.com/free-vector/happy-imaginative-monsters_23-2147532089.jpg"
-<form class="form-signin" method="post" action="" align="center"> {% csrf_token %}
-  {{form.as_p}} <br>
-<input type="submit" value="Submit" />
-</form>
+<p><br></p>
+<div class="row">
+  <div class="center-block" style="width:500px;">
+    <p class="lead">Add your game</p>
+    <form class="form-signin" method="post" action=""> {% csrf_token %}
+      {% for field in form %}
+        {{ field.errors }}
+         <label for="{{field.name}}" class="{{form.label_class}}">
+          {{field.label}}
+        </label> {{field}} <br>
+      {% endfor %} <br>
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
+</div>
 {% endblock %}

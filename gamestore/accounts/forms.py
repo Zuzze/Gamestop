@@ -44,6 +44,7 @@ class RegistrationForm(forms.Form):
 class LoginForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.label_class = 'sr-only'
+        self.login_allowed = False
         super(LoginForm, self).__init__(*args, **kwargs)
 
     username = forms.CharField(label='Username', max_length=256,
@@ -56,7 +57,9 @@ class LoginForm(forms.Form):
         username_ = self.cleaned_data['username']
         password_ = self.cleaned_data['password']
 
-        try:
-            user = authenticate(username=username_, password=password_)
-        except Exception as e:
+        user = authenticate(username=username_, password=password_)
+        if user is None:
+            self.login_allowed = False
             raise forms.ValidationError("Username or password is wrong!")
+        else:
+            self.login_allowed = True
