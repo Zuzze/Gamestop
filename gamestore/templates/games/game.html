@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load staticfiles %}
 <!--certain game instance not added yet-->
 <html lang="en">
   <head>
@@ -10,17 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <!--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><!--added-->
-    <!--><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"><!--added-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><!--added-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"><!--added-->
 
     <title>Game description page</title>
 
     <!-- Bootstrap core CSS -->
     <!--<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- Additional fonts -->
-    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -86,7 +82,6 @@ jQuery(document).ready(function(b){var a=b("#w2bSocialFloat");a.wrap('<div id="w
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/games/">Games</a></li>
-            <li><a href="/player/">Profile</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->

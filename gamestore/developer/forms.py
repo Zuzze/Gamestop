@@ -6,4 +6,4 @@ class AddGameForm(forms.Form):
     game_price = forms.DecimalField(label='Game Price', max_digits=8)
     game_description = forms.CharField(label='Game Description', max_length=1024,
         required=False)
-    game_icon = forms.URLField(label='Game Icon', max_length=256, required=False)
+    game_icon = forms.URLField(label='Game Icon URL', max_length=256, required=False)

@@ -23,7 +23,11 @@ Gamestore
         <div class="col-xs-6 col-lg-4">
             <h2 align="center">{{game.title}}</h2>
             <!--add gamepicture here-->
-            <img align="center" src="http://gameworldscamp.com/wp-content/uploads/2015/07/WebCircle_3.png"</img>
+            {% if game.icon %}
+            <img align="center" height="100%" width="100%" src="{{game.icon}}"</img>
+            {% else %}
+            <img align="center" height="100%" width="100%" src="https://image.freepik.com/free-vector/cartoon-of-a-businessman-with-a-question-mark_1207-251.jpg"</img>
+            {% endif %}
             <p> {{game.description}} </p>
             <p align="center"><a class="btn btn-default" href="/games/{{game.title}}" role="button">{{game.price}} &euro;</a></p>
         </div><!--/.col-xs-6.col-lg-4-->
