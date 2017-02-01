@@ -1,5 +1,5 @@
 
-{% extends 'accounts/base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
 Add Game to GameStop
@@ -7,11 +7,19 @@ Add Game to GameStop
 
 
 {% block content %}
-<!-- <h2 class="featurette-heading">Welcome {{name}},<span class="text-muted"></span></h2> -->
 <p><br></p>
-<p class="lead">Add your game here</p>
-<form class="form-signin" method="post" action="" align="center"> {% csrf_token %}
-  {{form.as_p}} <br>
-<input type="submit" value="Submit" />
-</form>
+<div class="row">
+  <div class="center-block" style="width:500px;">
+    <p class="lead">Add your game here</p>
+    <form class="form-signin" method="post" action=""> {% csrf_token %}
+      {% for field in form %}
+        {{ field.errors }}
+         <label for="{{field.name}}" class="{{form.label_class}}">
+          {{field.label}}
+        </label> {{field}} <br>
+      {% endfor %} <br>
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
+</div>
 {% endblock %}

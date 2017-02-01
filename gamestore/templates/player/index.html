@@ -9,29 +9,37 @@ Welcome to GameStop
 <h2 class="featurette-heading">Welcome {{username}},<span class="text-muted"></span></h2>
   {% if games %}
     <p class="lead">Your Games</p>
-    <table class="table table-striped table-responsive">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Game Title</th>
-          <th>Game Price</th>
-          <th>Personal best score</th>
-          <th>Highest Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for game in games %}
-        <tr>
-          <th scope="row">{{forloop.counter}}</th>
-          <td><a href="{{game.url}}">{{game.title}}</a></td>
-          <td>{{game.price}}</td>
-          <td></td>
-          <td></td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+      <div class="row">
+        <div class="center-block" style="width:500px;">
+          <table class="table table-striped table-responsive">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Game Title</th>
+                <th>Game Price</th>
+                <th>Personal best score</th>
+                <th>Highest Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for game in games %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td><a href="{{game.url}}">{{game.title}}</a></td>
+                <td>{{game.price}}</td>
+                <td></td>
+                <td></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
   {% else %}
-  <p class="lead"> You have not purchased any games yet. </p>
+    <div class="row">
+      <div class="center-block" style="width:500px;">
+        <p class="lead"> You have not purchased any games yet. </p>
+      </div>
+    </div>
   {% endif %}
 {% endblock %}

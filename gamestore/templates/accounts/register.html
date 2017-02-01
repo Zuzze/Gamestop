@@ -6,7 +6,8 @@ Register at GameStop
 
 
 {% block content %}
-<div class="container">
+<div class="row">
+  <div class="center-block" style="width:500px;">
     <form class="form-signin" method="post" action=""> {% csrf_token %}
         <h2 class="form-signin-heading">Registration Form</h2>
         <div class="help-inline">{{form.non_field_errors}}</div>
@@ -15,7 +16,7 @@ Register at GameStop
           {{ field.errors }}
           <label for="{{field.name}}" class="{{form.label_class}}">
             {{field.label}}
-          </label> {{field}}
+          </label> {{field}} <br>
           {% endif %}
         {% endfor %}
         <div class="btn-group" data-toggle="buttons">
@@ -23,10 +24,11 @@ Register at GameStop
           <label class="btn btn-default">
           <input type="radio" autocomplete="off" /> {{radio}}
           </label>
-        {% endfor %}
+        {% endfor %} <br>
         </div>
         <br> <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
     </form>
+  </div>
 </div>
 {% endblock %}

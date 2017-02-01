@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, render_to_response
 
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 
 from .forms import LoginForm, RegistrationForm
@@ -12,15 +12,10 @@ def login_view(request):
     form = LoginForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         username_ = form.cleaned_data['username']
-        #password_ = form.cleaned_data['password']
-        user = User.objects.get(username=username_)
-        #user = authenticate(username=username_, password=password_)
-        #if user is None:
-        #    context = { 'form': form,
-        #    'message': 'Incorrect username or password. Try again.',
-        #    }
-        #    return render(request, "accounts/login.html", context)
-        login(request, user)
+        password_ = form.cleaned_data['password']
+        if form.login_allowed:
+            user = User.objects.get(username=username_)
+            login(request, user)
         return HttpResponseRedirect("/home/")
 
     context = { 'form': form }
@@ -42,13 +37,11 @@ def register_view(request):
         if (user_type_ == '1'):
             dev_ = Developer(name=username_)
             dev_.save()
-            url = "developer/index.html"
         else:
             player_ = Player(name=username_)
             player_.save()
-            url = "player/profile.html"
         login(request, user)
-        return HttpResponseRedirect(url)
+        return HttpResponseRedirect("/home")
 
     context = {
         'form': form
