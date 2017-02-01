@@ -21,3 +21,15 @@ def game(request, gametitle):
         }
         return render(request, 'games/game.html', context)
     return HttpResponseRedirect("/games")
+
+def play_game(request, gametitle):
+    try:
+        game = Game.objects.get(title=gametitle)
+    except Game.DoesNotExist:
+        return HttpResponseRedirect("/home/")
+    else:
+        context = {
+            'game' : game,
+        }
+        return render(request, 'games/play.html', context)
+    return HttpResponseRedirect("/games")

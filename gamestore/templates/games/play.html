@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{game.title}}
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+  <div class="center-block" style="width:900px;"> <br><br>
+    <div class="embed-responsive embed-responsive-16by9">
+    <iframe  src="{{game.url}}" class="embed-responsive-item " />
+    </div>
+  </div>
+</div>
+{% endblock %}
