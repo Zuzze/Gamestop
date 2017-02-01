@@ -10,8 +10,8 @@ def games(request):
     }
     return render(request, 'games/games.html', context)
 
-def game(request):
+def game(request, gametitle):
     context = {
-        'all_games' : Game.objects.all()
+        'game' : Game.objects.get(title=gametitle)
     }
     return render(request, 'games/game.html', context)

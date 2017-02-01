@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.games, name='games'),
-    url(r'^game/$', views.game, name='game'),
+    url(r'^(\w{2})/$', views.game, name='game'),
 ]

@@ -10,8 +10,8 @@ Welcome to GameStop
 <h2 class="featurette-heading">Welcome {{name}},<span class="text-muted"></span></h2>
   {% if games %}
     <p class="lead">Your Games</p>
-    <table class="table table-striped table-responsive">
-      <thead>
+    <table class="table table-striped table-responsive text-centered">
+      <thead class="row-fluid">
         <tr>
           <th>#</th>
           <th>Game Title</th>
@@ -23,7 +23,7 @@ Welcome to GameStop
       <tbody>
         {% for game in games %}
         <tr>
-          <th scope="row">{{forloop.counter}}</th>
+          <th>{{forloop.counter}}</th>
           <td><a href="{{game.url}}">{{game.title}}</a></td>
           <td>{{game.price}}</td>
           <td></td>
@@ -33,6 +33,6 @@ Welcome to GameStop
       </tbody>
     </table>
   {% else %}
-  <p> You have not added any games yet. </p>
+  <p class="lead"> You have not added any games yet. </p>
   {% endif %}
 {% endblock %}

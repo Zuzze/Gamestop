@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from .models import Player
@@ -27,3 +27,13 @@ def player_shop_view(request):
         'user_type': '2',
     }
     return render(request, 'player/shop_games.html', context)
+
+@login_required
+def player_buy_game(request, gametitle):
+    try:
+        player_ = Player.objects.get(name=request.user)
+    except Player.DoesNotExist:
+        return HttpResponse("No such user")
+    else:
+        player_.player_add_game(gametitle)
+    return HttpResponseRedirect("/player/")
