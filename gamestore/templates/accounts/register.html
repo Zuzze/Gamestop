@@ -1,4 +1,4 @@
-{% extends 'accounts/base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
 Register at GameStop
@@ -9,6 +9,7 @@ Register at GameStop
 <div class="container">
     <form class="form-signin" method="post" action=""> {% csrf_token %}
         <h2 class="form-signin-heading">Registration Form</h2>
+        <div class="help-inline">{{form.non_field_errors}}</div>
         {% for field in form %}
           {% if field != form.user_type %}
           {{ field.errors }}
@@ -17,9 +18,13 @@ Register at GameStop
           </label> {{field}}
           {% endif %}
         {% endfor %}
+        <div class="btn-group" data-toggle="buttons">
         {% for radio in form.user_type %}
-          {{radio}}
+          <label class="btn btn-default">
+          <input type="radio" autocomplete="off" /> {{radio}}
+          </label>
         {% endfor %}
+        </div>
         <br> <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
     </form>

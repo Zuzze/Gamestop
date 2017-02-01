@@ -10,7 +10,7 @@ Add Game to GameStop
 <!-- <h2 class="featurette-heading">Welcome {{name}},<span class="text-muted"></span></h2> -->
 <p><br></p>
 <p class="lead">Add your game here</p>
-<form method="post" action="" align="center"> {% csrf_token %}
+<form class="form-signin" method="post" action="" align="center"> {% csrf_token %}
   {{form.as_p}} <br>
 <input type="submit" value="Submit" />
 </form>
