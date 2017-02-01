@@ -24,12 +24,13 @@ Gamestore
             <h2 align="center">{{game.title}}</h2>
             <!--add gamepicture here-->
             {% if game.icon %}
-            <img align="center" height="100%" width="100%" src="{{game.icon}}"</img>
+            <img align="center" height="80%" width="80%" src="{{game.icon}}"</img>
             {% else %}
-            <img align="center" height="100%" width="100%" src="https://image.freepik.com/free-vector/cartoon-of-a-businessman-with-a-question-mark_1207-251.jpg"</img>
+            <img align="center" height="80%" width="80%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
             {% endif %}
+            <h4 align="center">{{game.price}} &euro;</h4>
             <p> {{game.description}} </p>
-            <p align="center"><a class="btn btn-default" href="/games/{{game.title}}" role="button">{{game.price}} &euro;</a></p>
+            <p align="center"><a class="btn btn-default" href="/games/{{game.title}}" role="button">See more ></a></p>
         </div><!--/.col-xs-6.col-lg-4-->
         {% endfor %}
       </div><!--/row-->

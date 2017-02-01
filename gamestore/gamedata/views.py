@@ -12,6 +12,6 @@ def games(request):
 
 def game(request, gametitle):
     context = {
-        'game' : Game.objects.get(title=gametitle)
+        'game' : Game.objects.get(id=game.id)
     }
     return render(request, 'games/game.html', context)
