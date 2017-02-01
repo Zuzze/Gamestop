@@ -17,8 +17,8 @@ class AddGameForm(forms.Form):
     game_description = forms.CharField(label='Game Description', max_length=1024,
         required=False, widget=forms.NumberInput(attrs={'class': 'form-control',
                                             'placeholder': 'Game Description'}))
-    game_icon = forms.URLField(label='Game Icon', max_length=256, required=False,
-    widget=forms.URLInput(attrs={'class': 'form-control','placeholder': 'Game Icon'}))
+    game_icon = forms.URLField(label='Game Icon URL', max_length=256, required=False,
+    widget=forms.URLInput(attrs={'class': 'form-control','placeholder': 'Game Icon URL'}))
 
     def clean(self):
         price_ = self.cleaned_data['game_price']
