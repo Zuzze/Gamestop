@@ -15,7 +15,7 @@ class AddGameForm(forms.Form):
         widget=forms.NumberInput(attrs={'class': 'form-control',
                                         'placeholder': 'Game Price'}))
     game_description = forms.CharField(label='Game Description', max_length=1024,
-        required=False, widget=forms.NumberInput(attrs={'class': 'form-control',
+        required=False, widget=forms.TextInput(attrs={'class': 'form-control',
                                             'placeholder': 'Game Description'}))
     game_icon = forms.URLField(label='Game Icon URL', max_length=256, required=False,
     widget=forms.URLInput(attrs={'class': 'form-control','placeholder': 'Game Icon URL'}))
