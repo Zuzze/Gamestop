@@ -1,19 +1,20 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
+from django.contrib import messages
 from django.shortcuts import render, render_to_response
 from django.contrib.auth.decorators import login_required
 
 from .models import Developer
-#from gamedata.models import Game
 from .forms import AddGameForm
 
 @login_required
 def index(request):
     try:
         dev_ = Developer.objects.get(name=request.user)
-    except Exception as e:
-        print(e)
-        return HttpResponse("Bad page")
+    except Developer.DoesNotExist:
+        messages.add_message(request, messages.INFO,
+        "Not registered as a developer")
+        return HttpResponseRedirect("/error/")
 
     context = {
         'games' : dev_.games.all(),
@@ -26,9 +27,10 @@ def index(request):
 def add_game(request):
     try:
         dev_ = Developer.objects.get(name=request.user)
-    except Exception as e:
-        print(e)
-        return HttpResponse("Bad page")
+    except Developer.DoesNotExist:
+        messages.add_message(request, messages.INFO,
+        "Not registered as a developer")
+        return HttpResponseRedirect("/error/")
 
     if request.method == 'POST':
         form = AddGameForm(request.POST)
@@ -38,8 +40,6 @@ def add_game(request):
             game_des_ = form.cleaned_data['game_description']
             game_icon_ = form.cleaned_data['game_icon']
             game_price_ = form.cleaned_data['game_price']
-            #new_game_ = Game(title=game_title_, url=game_url_, dev=dev_)
-            #new_game_.save()
             dev_.add_game(game_title_, game_url_, game_price_, game_des_, game_icon_)
             return HttpResponseRedirect('/dev/')
     else:

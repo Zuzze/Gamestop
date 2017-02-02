@@ -25,7 +25,7 @@ Welcome to GameStop
               {% for game in games %}
               <tr>
                 <th scope="row">{{forloop.counter}}</th>
-                <td><a href="{{game.url}}">{{game.title}}</a></td>
+                <td><a href="/games/play/{{game.title}}">{{game.title}}</a></td>
                 <td>{{game.price}}</td>
                 <td></td>
                 <td></td>

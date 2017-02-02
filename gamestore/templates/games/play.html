@@ -1,0 +1,50 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+GameStop - {{game.title}}
+{% endblock %}
+
+{% block script_jquery %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+/* global $ */
+$(document).ready(function() {
+  'use strict';
+  $(window).on('message', function(evt) {
+    //Note that messages from all origins are accepted
+
+    /* Get data from sent message
+     * Message types from game to service: SCORE, SAVE, LOAD_REQUEST, SETTING */
+    var data = evt.originalEvent.data;
+    console.log(data.messageType);
+    switch (data.messageType) {
+      case 'SCORE':
+        break;
+      case 'SAVE':
+        break;
+      case 'LOAD_REQUEST':
+        break;
+      case 'SETTING':
+        $('#iframeWrapper').width(data.options.width);
+        $('#iframeWrapper').height(data.options.height);
+        console.log($('#iframeWrapper').width());
+        console.log($('#iframeWrapper').height());
+        break;
+      default:
+        break;
+    }
+  });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div id="iframeWrapper" class="center-block" style="width:900px;"> <br><br>
+    <div class="embed-responsive embed-responsive-16by9">
+    <iframe  src="{{game.url}}" class="embed-responsive-item " />
+    </div>
+  </div>
+</div>
+{% endblock %}
