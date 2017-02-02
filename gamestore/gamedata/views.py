@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 from .models import Game
-#testing
+from player.models import Player
 
 def games(request):
     context = {
@@ -22,7 +24,14 @@ def game(request, gametitle):
         return render(request, 'games/game.html', context)
     return HttpResponseRedirect("/games")
 
+@login_required
 def play_game(request, gametitle):
+    try:
+        player_ = Player.objects.get(name=request.user)
+    except Player.DoesNotExist:
+        messages.add_message(request, messages.INFO,
+        "You have to register as a player")
+        return HttpResponseRedirect("/error/")
     try:
         game = Game.objects.get(title=gametitle)
     except Game.DoesNotExist:

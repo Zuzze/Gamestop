@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
@@ -9,9 +10,10 @@ from gamedata.models import Game
 def playerprofile(request):
     try:
         player_ = Player.objects.get(name=request.user)
-    except Exception as e:
-        print(e)
-        return HttpResponse("Bad page")
+    except Player.DoesNotExist:
+        messages.add_message(request, messages.INFO,
+        "Not registered as a player")
+        return HttpResponseRedirect("/error/")
     context = {
         'games' : player_.games.all(),
         'username': request.user,
@@ -33,7 +35,8 @@ def player_buy_game(request, gametitle):
     try:
         player_ = Player.objects.get(name=request.user)
     except Player.DoesNotExist:
-        return HttpResponse("No such user")
+        messages.add_message(request, messages.INFO, "Not registered as a player")
+        return HttpResponseRedirect("/error/")
     else:
         player_.player_add_game(gametitle)
     return HttpResponseRedirect("/player/")
