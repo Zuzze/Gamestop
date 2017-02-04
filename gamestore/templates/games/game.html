@@ -102,12 +102,12 @@ jQuery(document).ready(function(b){var a=b("#w2bSocialFloat");a.wrap('<div id="w
         {% if not user.is_authenticated %}
         <div class="col-md-6">
           <p></p>
-          <p><a id="buy-button" class="btn btn-default" href="/accounts/login/" role="button">Buy &raquo;</a>
+          <p><a id="cart-button" class="btn btn-default" href="/accounts/login/" role="button">Add to Cart &raquo;</a>
         </div>
       {% else %}
         <div class="col-md-6">
           <p></p>
-          <p><a id="buy-button" class="btn btn-default" href="/player/{{game.title}}/" role="button">Buy &raquo;</a>
+          <p><a id="cart-button" class="btn btn-default" href="/player/{{game.title}}/" role="button">Add to Cart &raquo;</a>
         </div>
       {% endif %}
     </div><!-- /.row -->
@@ -118,11 +118,13 @@ jQuery(document).ready(function(b){var a=b("#w2bSocialFloat");a.wrap('<div id="w
 
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">Game Name - {{game.title}}<span class="text-muted"></span></h2>
+          <h2 class="featurette-heading">{{game.title}}<span class="text-muted"></span></h2>
           <p class="lead"> {{game.description}}</p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" src="https://image.freepik.com/free-vector/young-people-with-virtual-reality-glasses_23-2147592958.jpg" alt="Generic placeholder image">
+          {% if game.icon %}
+          <img class="featurette-image img-responsive center-block" width="50%" src="{{game.icon}}" alt="Generic placeholder image">
+          {% endif %}
         </div>
       </div>
 

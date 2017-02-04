@@ -40,3 +40,14 @@ def player_buy_game(request, gametitle):
     else:
         player_.player_add_game(gametitle)
     return HttpResponseRedirect("/player/")
+
+@login_required
+def player_add_to_cart(request, gametitle):
+    try:
+        player_ = Player.objects.get(name=request.user)
+    except Player.DoesNotExist:
+        messages.add_message(request, messages.INFO, "Not registered as a player")
+        return HttpResponseRedirect("/error/")
+    else:
+        player_.player_add_to_cart(gametitle)
+    return HttpResponseRedirect("/games/")

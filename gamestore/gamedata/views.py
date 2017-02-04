@@ -12,9 +12,9 @@ def games(request):
     }
     return render(request, 'games/games.html', context)
 
-def game(request, gametitle):
+def game(request, id):
     try:
-        game = Game.objects.get(title=gametitle)
+        game = Game.objects.get(id=id)
     except Game.DoesNotExist:
         return HttpResponseRedirect("/games")
     else:
@@ -25,7 +25,7 @@ def game(request, gametitle):
     return HttpResponseRedirect("/games")
 
 @login_required
-def play_game(request, gametitle):
+def play_game(request, id):
     try:
         player_ = Player.objects.get(name=request.user)
     except Player.DoesNotExist:
@@ -33,7 +33,7 @@ def play_game(request, gametitle):
         "You have to register as a player")
         return HttpResponseRedirect("/error/")
     try:
-        game = Game.objects.get(title=gametitle)
+        game = Game.objects.get(id=id)
     except Game.DoesNotExist:
         return HttpResponseRedirect("/home/")
     else:
@@ -42,3 +42,6 @@ def play_game(request, gametitle):
         }
         return render(request, 'games/play.html', context)
     return HttpResponseRedirect("/games")
+
+#@login_required
+#def pay(request, gametitle):

@@ -15,3 +15,12 @@ class Player(models.Model):
         else:
             game.players.add(self)
             game.save()
+
+    def player_add_to_cart(self, game_title):
+        try:
+            game = Game.objects.get(title=game_title)
+        except Game.DoesNotExist:
+            return None
+        else:
+            game.players.add(self)
+            game.save()

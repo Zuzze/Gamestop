@@ -1,6 +1,7 @@
 from django.db import models
 
 class Game(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=256, unique=True)
     url = models.URLField(null=False)
     dev = models.ForeignKey('developer.Developer', related_name="games")
