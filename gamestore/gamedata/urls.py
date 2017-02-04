@@ -5,4 +5,5 @@ urlpatterns = [
     url(r'^$', views.games, name='games'),
     url(r'^(?P<gametitle>\w+)/$', views.game, name='game'),
     url(r'^(play)/(?P<gametitle>\w+)/$', views.play_game, name='play_game'),
+    #url(r'^(play)/(?P<gametitle>\w+)/pay/$', views.pay, name='play_game'),
 ]
