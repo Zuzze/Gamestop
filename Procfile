@@ -1,1 +1,1 @@
-web: gunicorn gamestore.wsgi:application --log-file -
+web: gunicorn --pythonpath gamestore gamestore.wsgi --log-file -
