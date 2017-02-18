@@ -3,6 +3,7 @@ from gamedata.models import Game
 
 class Player(models.Model):
     name = models.CharField(max_length=256, unique=True)
+    #cart_games = models.ForeignKey('gamedata.Game', related_name="cart_games")
 
     def __unicode__(self):
         return self.name
@@ -16,11 +17,16 @@ class Player(models.Model):
             game.players.add(self)
             game.save()
 
-    def player_add_to_cart(self, game_title):
+            def add_game(self, title, url, price=None, desc=None, icon=None):
+                game = Game(title=title, url=url, dev=self, description=desc,
+                icon=icon, price=price)
+                game.save()
+
+    def player_add_to_cart(self, game_id):
         try:
-            game = Game.objects.get(title=game_title)
+            game = Game.objects.get(id=game_id)
         except Game.DoesNotExist:
             return None
-        else:
-            game.players.add(self)
-            game.save()
+        #else:
+            #self.cart_games.add(game_id)
+            #self.save()

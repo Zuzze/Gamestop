@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Cart
+{% endblock %}
+
+
+{% block content %}
+<h2>Shopping cart</h2>
+<img class="featurette-image img-responsive center-block" width="15%" src="https://cdn4.iconfinder.com/data/icons/e-commerce-and-shopping-3/500/cart-checked-128.png" alt="Generic placeholder image">
+<br>
+
+{% if cart_games %}
+  <p class="lead">Games in the cart</p>
+    <div class="row">
+      <div class="center-block" style="width:500px;">
+        <table class="table table-striped table-responsive">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Game Title</th>
+              <th>Game Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for game in games %}
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td><a href="/games/play/{{game.title}}">{{game.title}}</a></td>
+              <td>{{game.price}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <h2> Total: 2.99€ </h2>
+        <p align="center"><a class="btn btn-default" href="/games/" role="button">Pay now &raquo;</a></p>
+      </div>
+    </div>
+{% else %}
+  <div class="row">
+    <div class="center-block" style="width:500px;">
+      <p class="lead"> You have no games in the cart yet. </p>
+    </div>
+  </div>
+{% endif %}
+<p align="center"><a class="btn btn-default" href="/games/" role="button">Continue shopping &raquo;</a></p>
+{% endblock %}

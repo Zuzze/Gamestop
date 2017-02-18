@@ -102,12 +102,12 @@ jQuery(document).ready(function(b){var a=b("#w2bSocialFloat");a.wrap('<div id="w
         {% if not user.is_authenticated %}
         <div class="col-md-6">
           <p></p>
-          <p><a id="cart-button" class="btn btn-default" href="/accounts/login/" role="button">Add to Cart &raquo;</a>
+          <p><a id="buy-button" class="btn btn-default" href="/accounts/login/" role="button">Add to Cart &raquo;</a>
         </div>
       {% else %}
         <div class="col-md-6">
           <p></p>
-          <p><a id="cart-button" class="btn btn-default" href="/player/{{game.title}}/" role="button">Add to Cart &raquo;</a>
+          <p><a id="buy-button" class="btn btn-default" href="/player/added/" role="button">Add to Cart &raquo;</a>
         </div>
       {% endif %}
     </div><!-- /.row -->
