@@ -16,7 +16,7 @@ class Player(models.Model):
         else:
             game.players.add(self)
             game.save()
-            cart_games.delete()
+            cart_games.remove()
             cart_games.save()
 
     def player_add_to_cart(self, game_title):

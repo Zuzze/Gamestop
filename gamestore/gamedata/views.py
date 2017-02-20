@@ -65,3 +65,23 @@ def added_to_cart(request, id):
         player_.cart_games.add(game)
         return render(request, 'games/added.html', context)
     return HttpResponseRedirect("/games")
+
+@login_required
+def removed_from_cart(request, id):
+    try:
+        player_ = Player.objects.get(name=request.user)
+    except Player.DoesNotExist:
+        messages.add_message(request, messages.INFO,
+        "You have to register as a player")
+        return HttpResponseRedirect("/error/")
+    try:
+        game = Game.objects.get(id=id)
+    except Game.DoesNotExist:
+        return HttpResponseRedirect("/home/")
+    else:
+        context = {
+            'game' : game,
+        }
+        player_.cart_games.remove(game)
+        return render(request, 'games/removed.html', context)
+    return HttpResponseRedirect("/games")

@@ -17,8 +17,8 @@ Cart
         <table id="cart-table" class="table table-striped table-responsive">
           <thead>
             <tr>
-              <th>Game Title</th>
-              <th>Game Price</th>
+              <th id="title-col">Game Title</th>
+              <th id="price-col">Game Price</th>
             </tr>
           </thead>
           <tbody>
@@ -26,12 +26,14 @@ Cart
             <tr>
               <td><a href="/games/{{game.id}}">{{game.title}}</a></td>
               <td class="countable">{{game.price}}</td>
+              <td><a href="/games/{{game.id}}/removed/">X</a>
             </tr>
             {% endfor %}
           </tbody>
         </table>
         <hr>
         <h2 id="cart-sum"></h2><!--javascript calculator-->
+        <hr>
         <p align="center"><a class="btn btn-default" href="/games/" role="button">Pay now &raquo;</a></p>
       </div>
     </div>
