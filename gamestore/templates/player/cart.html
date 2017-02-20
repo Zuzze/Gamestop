@@ -14,7 +14,7 @@ Cart
   <p class="lead">Games in the cart</p>
     <div class="row">
       <div class="center-block" style="width:500px;">
-        <table class="table table-striped table-responsive">
+        <table id="cart-table" class="table table-striped table-responsive">
           <thead>
             <tr>
               <th>Game Title</th>
@@ -25,16 +25,13 @@ Cart
           {% for game in cart_games.all %}
             <tr>
               <td><a href="/games/{{game.id}}">{{game.title}}</a></td>
-              <td>{{game.price}}</td>
-              <td></td>
-              <td></td>
+              <td class="countable">{{game.price}}</td>
             </tr>
             {% endfor %}
-
           </tbody>
         </table>
         <hr>
-        <h2> Total: 2.99€ </h2><!--add javascript calculator here-->
+        <h2 id="cart-sum"></h2><!--javascript calculator-->
         <p align="center"><a class="btn btn-default" href="/games/" role="button">Pay now &raquo;</a></p>
       </div>
     </div>
@@ -46,4 +43,16 @@ Cart
   </div>
 {% endif %}
 <p align="center"><a class="btn btn-default" href="/games/" role="button">Continue shopping &raquo;</a></p>
+
+<script>
+var cls = document.getElementById("cart-table").getElementsByTagName("td");
+var sum = 0;
+  for (var i = 0; i < cls.length; i++){
+    if(cls[i].className == "countable"){
+        sum += isNaN(cls[i].innerHTML) ? 0 : parseFloat(cls[i].innerHTML);
+    }
+}
+    document.getElementById("cart-sum").innerHTML = "Total: " + sum + "€";
+</script>
+
 {% endblock %}
