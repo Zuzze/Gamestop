@@ -39,15 +39,17 @@ def player_buy_game(request, gametitle):
         return HttpResponseRedirect("/error/")
     else:
         player_.player_add_game(gametitle)
-    return render(request, "player/added.html")
+    return render(request, "player/cart.html")
 
 @login_required
-def player_cart(request, game_id):
+def player_cart(request):
     try:
         player_ = Player.objects.get(name=request.user)
     except Player.DoesNotExist:
         messages.add_message(request, messages.INFO, "Not registered as a player")
         return HttpResponseRedirect("/error/")
     else:
-        player_.player_add_to_cart(game_id)
-        return render(request, 'player/added.html', context)
+        context = {
+            'cart_games': player_.cart_games,
+        }
+        return render(request, 'player/cart.html', context)

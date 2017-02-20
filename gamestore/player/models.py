@@ -3,7 +3,7 @@ from gamedata.models import Game
 
 class Player(models.Model):
     name = models.CharField(max_length=256, unique=True)
-    #cart_games = models.ForeignKey('gamedata.Game', related_name="cart_games")
+    cart_games = models.ManyToManyField('gamedata.Game', related_name="cart_games", blank=True)
 
     def __unicode__(self):
         return self.name
@@ -16,17 +16,19 @@ class Player(models.Model):
         else:
             game.players.add(self)
             game.save()
+            cart_games.delete()
+            cart_games.save()
 
-            def add_game(self, title, url, price=None, desc=None, icon=None):
-                game = Game(title=title, url=url, dev=self, description=desc,
-                icon=icon, price=price)
-                game.save()
-
-    def player_add_to_cart(self, game_id):
+    def player_add_to_cart(self, game_title):
         try:
-            game = Game.objects.get(id=game_id)
+            game = Game.objects.get(title=game_title)
         except Game.DoesNotExist:
-            return None
-        #else:
-            #self.cart_games.add(game_id)
-            #self.save()
+            messages.add_message(request, messages.INFO,
+            "Error in cart")
+            return HttpResponseRedirect("/error/")
+        else:
+            #if request.method == 'POST':
+                #return HttpResponseRedirect('/dev/')
+            #game = get_object_or_404(Game, title=game_title)
+            self.cart_games.add(game)
+            self.save()

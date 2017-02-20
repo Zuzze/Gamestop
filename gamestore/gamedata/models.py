@@ -13,5 +13,10 @@ class Game(models.Model):
     def __unicode__(self):
         return self.title
 
+    #def add_to_cart(request):
+    #self.cart_games.add(game)
+    #self.save()
+        #return None
+
     #def add_player(self, player_):
     #    self.player

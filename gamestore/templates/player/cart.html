@@ -17,22 +17,24 @@ Cart
         <table class="table table-striped table-responsive">
           <thead>
             <tr>
-              <th>#</th>
               <th>Game Title</th>
               <th>Game Price</th>
             </tr>
           </thead>
           <tbody>
-            {% for game in games %}
+          {% for game in cart_games.all %}
             <tr>
-              <th scope="row">{{forloop.counter}}</th>
-              <td><a href="/games/play/{{game.title}}">{{game.title}}</a></td>
+              <td><a href="/games/{{game.id}}">{{game.title}}</a></td>
               <td>{{game.price}}</td>
+              <td></td>
+              <td></td>
             </tr>
             {% endfor %}
+
           </tbody>
         </table>
-        <h2> Total: 2.99€ </h2>
+        <hr>
+        <h2> Total: 2.99€ </h2><!--add javascript calculator here-->
         <p align="center"><a class="btn btn-default" href="/games/" role="button">Pay now &raquo;</a></p>
       </div>
     </div>
