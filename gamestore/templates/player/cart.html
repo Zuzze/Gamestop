@@ -54,7 +54,7 @@ var sum = 0;
         sum += isNaN(cls[i].innerHTML) ? 0 : parseFloat(cls[i].innerHTML);
     }
 }
-    document.getElementById("cart-sum").innerHTML = "Total: " + sum + "€";
+    document.getElementById("cart-sum").innerHTML = "Total: " + sum.toFixed(2) + "€";
 </script>
 
 {% endblock %}

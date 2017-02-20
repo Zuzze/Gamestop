@@ -6,11 +6,8 @@ Game removed from cart
 
 
 {% block content %}
-<h2>Game removed from cart</h2>
-<h3>{{game.title}}</h3>
-<img class="featurette-image img-responsive center-block" width="20%" src="{{game.icon}}" alt="Generic placeholder image">
+<h2>{{game.title}} removed from cart</h2>
 <br>
-
 <p align="center"><a class="btn btn-default" href="/games/" role="button">Continue shopping &raquo;</a></p>
 <p align="center"><a class="btn btn-default" href="/player/cart" role="button">Show Shopping Cart &raquo;</a></p>
 {% endblock %}

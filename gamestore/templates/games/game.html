@@ -95,30 +95,12 @@ jQuery(document).ready(function(b){var a=b("#w2bSocialFloat");a.wrap('<div id="w
 
     <div class="container marketing">
 
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <h2>Price {{game.price}} &euro;</h2>
-        <h2>Released by {{game.dev.name}} </h2>
-        {% if not user.is_authenticated %}
-        <div class="col-md-6">
-          <p></p>
-          <p><a id="buy-button" class="btn btn-default" href="/accounts/login/" role="button">Login to buy &raquo;</a>
-        </div>
-      {% else %}
-        <div class="col-md-6">
-          <p></p>
-          <p><a id="buy-button" class="btn btn-default" href="/games/{{game.id}}/added/" role="button">Add to Cart &raquo;</a>
-        </div>
-      {% endif %}
-    </div><!-- /.row -->
-
-      <!-- START THE FEATURETTES -->
-      <!--Game information-->
-      <hr class="featurette-divider">
-
       <div class="row featurette">
+        <br>
         <div class="col-md-7">
-          <h2 class="featurette-heading">{{game.title}}<span class="text-muted"></span></h2>
+          <br>
+          <h1 class="featurette-heading">{{game.title}}<span class="text-muted"></span></h1>
+          <h4>Released by {{game.dev.name}} </h4>
           <p class="lead"> {{game.description}}</p>
         </div>
         <div class="col-md-5">
@@ -127,6 +109,25 @@ jQuery(document).ready(function(b){var a=b("#w2bSocialFloat");a.wrap('<div id="w
           {% endif %}
         </div>
       </div>
+
+      <div class="row">
+        <br>
+        <h3>Price {{game.price}} &euro;</h3>
+        {% if not user.is_authenticated %}
+        <div class="col-md-6">
+          <p></p>
+          <p><a id="buy-button" class="btn btn-default" href="/accounts/login/" role="button">Login to buy &raquo;</a>
+        </div>
+      {% else %}
+        <div class="col-md-6">
+          <p></p>
+          <p><a id="buy-button" class="btn btn-default" href="/games/{{game.id}}/added/" role="button">To the Cart &raquo;</a>
+        </div>
+      {% endif %}
+    </div><!-- /.row -->
+      <!-- START THE FEATURETTES -->
+      <!--Game information-->
+      <hr class="featurette-divider">
 
       <!-- /END THE FEATURETTES -->
 
