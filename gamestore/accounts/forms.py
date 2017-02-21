@@ -39,6 +39,7 @@ class RegistrationForm(forms.Form):
         except User.DoesNotExist:
             print("User does not exist")
         else:
+            print("User exist")
             raise forms.ValidationError("Username is taken!")
 
 class LoginForm(forms.Form):

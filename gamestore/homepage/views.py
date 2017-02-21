@@ -9,13 +9,13 @@ from django.contrib.auth.models import User
 def index(request):
     if request.user.is_authenticated():
         try:
-            player_ = Player.objects.get(name=request.user)
+            player_ = Player.objects.get(user=request.user)
         except Player.DoesNotExist:
             pass
         else:
             return HttpResponseRedirect('/player/')
         try:
-            dev_ = Developer.objects.get(name=request.user)
+            dev_ = Developer.objects.get(user=request.user)
         except Developer.DoesNotExist:
             pass
         else:

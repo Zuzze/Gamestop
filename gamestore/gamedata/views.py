@@ -27,7 +27,7 @@ def game(request, id):
 @login_required
 def play_game(request, id):
     try:
-        player_ = Player.objects.get(name=request.user)
+        player_ = Player.objects.get(user=request.user)
     except Player.DoesNotExist:
         messages.add_message(request, messages.INFO,
         "You have to register as a player")
@@ -49,7 +49,7 @@ def play_game(request, id):
 @login_required
 def added_to_cart(request, id):
     try:
-        player_ = Player.objects.get(name=request.user)
+        player_ = Player.objects.get(user=request.user)
     except Player.DoesNotExist:
         messages.add_message(request, messages.INFO,
         "You have to register as a player")
@@ -69,7 +69,7 @@ def added_to_cart(request, id):
 @login_required
 def removed_from_cart(request, id):
     try:
-        player_ = Player.objects.get(name=request.user)
+        player_ = Player.objects.get(user=request.user)
     except Player.DoesNotExist:
         messages.add_message(request, messages.INFO,
         "You have to register as a player")

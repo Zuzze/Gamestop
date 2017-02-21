@@ -33,12 +33,12 @@ def register_view(request):
         password_ = form.cleaned_data['password']
         re_password_ = form.cleaned_data['re_password']
         user_type_ = form.cleaned_data['user_type']
-        user = User.objects.create_user(name_, username_, password_)
+        user = User.objects.create_user(first_name=name_, username=username_, password=password_)
         if (user_type_ == '1'):
-            dev_ = Developer(name=username_)
+            dev_ = Developer(user=user)
             dev_.save()
         else:
-            player_ = Player(name=username_)
+            player_ = Player(user=user)
             player_.save()
         login(request, user)
         return HttpResponseRedirect("/home")

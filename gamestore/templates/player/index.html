@@ -6,8 +6,8 @@ player index
 
 
 {% block content %}
-<h2 class="featurette-heading">Welcome {{username}},<span class="text-muted"></span></h2>
-  {% if games %}
+<h2 class="featurette-heading">Welcome {{user.first_name}},<span class="text-muted"></span></h2>
+  {% if gameData %}
     <p class="lead">Your Games</p>
       <div class="row">
         <div class="center-block" style="width:500px;">
@@ -22,13 +22,13 @@ player index
               </tr>
             </thead>
             <tbody>
-              {% for game in games %}
+              {% for data in gameData %}
               <tr>
                 <th scope="row">{{forloop.counter}}</th>
-                <td><a href="/games/play/{{game.title}}">{{game.title}}</a></td>
-                <td>{{game.price}}</td>
-                <td></td>
-                <td></td>
+                <td><a href="/games/play/{{data.game.id}}">{{data.game.title}}</a></td>
+                <td>{{data.game.price}}</td>
+                <td>{{data.player_high_score}}</td>
+                <td>{{data.game.highest_score}}</td>
               </tr>
               {% endfor %}
             </tbody>

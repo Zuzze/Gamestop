@@ -6,7 +6,7 @@ Welcome to GameStop
 
 
 {% block content %}
-<h2 class="featurette-heading">Hello, {{name}}<span class="text-muted"></span></h2>
+<h2 class="featurette-heading">Hello, {{user.first_name}}<span class="text-muted"></span></h2>
 <img align="center" width="20%" src="https://image.freepik.com/free-vector/super-businessman_1012-190.jpg" />
   {% if games %}
     <p class="lead">Your Games</p>
@@ -28,8 +28,8 @@ Welcome to GameStop
               <th>{{forloop.counter}}</th>
               <td><a href="{{game.url}}">{{game.title}}</a></td>
               <td>{{game.price}}</td>
-              <td></td>
-              <td></td>
+              <td>{{game.players.count}}</td>
+              <td>{{game.highest_score}}</td>
             </tr>
             {% endfor %}
           </tbody>

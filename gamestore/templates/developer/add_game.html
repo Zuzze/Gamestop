@@ -11,6 +11,7 @@ Add Game to GameStop
   <div class="center-block" style="width:500px;">
     <p class="lead">Add your game</p>
     <form class="form-signin" method="post" action=""> {% csrf_token %}
+      <div class="help-inline">{{form.non_field_errors}}</div>
       {% for field in form %}
         {{ field.errors }}
          <label for="{{field.name}}" class="{{form.label_class}}">
