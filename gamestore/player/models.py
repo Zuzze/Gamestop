@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Player(models.Model):
     user = models.ForeignKey(User)
-    #cart_games = models.ManyToManyField('gamedata.Game', related_name="cart_games", blank=True)
+    cart_games = models.ManyToManyField('gamedata.Game', related_name="cart_games", blank=True)
 
     def __unicode__(self):
         return self.name

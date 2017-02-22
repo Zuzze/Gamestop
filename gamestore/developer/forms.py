@@ -9,7 +9,7 @@ class AddGameForm(forms.Form):
     ('RP', 'Role Playing'),
     ('FPS', 'FPS'),
     ('SM', 'Simulation'),
-    ('SR', 'Stratergy'),
+    ('SR', 'Strategy'),
     ('O', 'Other'),
     ('S', 'Select Game Category'))
 
