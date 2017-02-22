@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-from .models import Player, PlayerGameData
+from .models import Player#, PlayerGameData
 from gamedata.models import Game
 
 @login_required
@@ -15,7 +15,7 @@ def playerprofile(request):
         "Not registered as a player")
         return HttpResponseRedirect("/error/")
     context = {
-        'gameData' : PlayerGameData.objects.filter(player=player_),
+        #'gameData' : PlayerGameData.objects.filter(player=player_),
         #'gameData':
         'user': request.user,
         'user_type': '2',
@@ -44,6 +44,7 @@ def player_cart(request):
         }
         return render(request, 'player/cart.html', context)
 
+
 @login_required
 def player_update_game_data(request):
     try:
@@ -59,6 +60,8 @@ def player_update_game_data(request):
             "to play this game. Something very wrong!")
             return HttpResponseRedirect("/error/")
         else:
+            pass
+            """
             try:
                 game_data = PlayerGameData.objects.get(player=player_, game=game_)
             except PlayerGameData.DoesNotExist:
@@ -67,6 +70,7 @@ def player_update_game_data(request):
                 return HttpResponseRedirect("/error/")
             else:
                 game_data.update_game_data(request.POST)
+            """
     return HttpResponse("")
 
 

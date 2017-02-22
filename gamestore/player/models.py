@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Player(models.Model):
     user = models.ForeignKey(User)
-    cart_games = models.ManyToManyField('gamedata.Game', related_name="cart_games", blank=True)
+    #cart_games = models.ManyToManyField('gamedata.Game', related_name="cart_games", blank=True)
 
     def __unicode__(self):
         return self.name
@@ -41,6 +41,7 @@ class Player(models.Model):
             self.cart_games.add(game)
             self.save()
 
+"""
 class PlayerGameData(models.Model):
     player = models.ForeignKey('Player', related_name='game_data')
     game = models.ForeignKey('gamedata.Game')
@@ -59,3 +60,4 @@ class PlayerGameData(models.Model):
         #    print(data['save_data'])
         #    self.game_save_data = data['save_data']
         #    self.save()
+"""
