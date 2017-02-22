@@ -52,24 +52,34 @@ def player_update_game_data(request):
     except Player.DoesNotExist:
         messages.add_message(request, messages.INFO, "Not registered as a player")
         return HttpResponseRedirect("/error/")
-    else:
-        try:
-            game_ = Game.objects.get(id=request.POST['gameId'])
-        except Game.DoesNotExist:
-            messages.add_message(request, messages.INFO, "Player not registered "
-            "to play this game. Something very wrong!")
-            return HttpResponseRedirect("/error/")
-        else:
-            try:
-                game_data = PlayerGameData.objects.get(player=player_, game=game_)
-            except PlayerGameData.DoesNotExist:
-                messages.add_message(request, messages.INFO, "Player not registered "
-                "to play this game. Something very wrong!")
-                return HttpResponseRedirect("/error/")
-            else:
-                game_data.update_game_data(request.POST)
-    return HttpResponse("")
 
+    if request.method == 'POST':
+        gameId = request.POST['gameId']
+    elif request.method == 'GET':
+        gameId = request.GET['gameId']
+
+    try:
+        game_ = Game.objects.get(id=gameId)
+    except Game.DoesNotExist:
+        messages.add_message(request, messages.INFO, "Player not registered to play this game.")
+        return HttpResponseRedirect("/error/")
+
+    try:
+        game_data = PlayerGameData.objects.get(player=player_, game=game_)
+    except PlayerGameData.DoesNotExist:
+        messages.add_message(request, messages.INFO, "Player not registered to play this game. Something very wrong!")
+        return HttpResponseRedirect("/error/")
+
+    if request.method == 'POST':
+        print("Updating info")
+        game_data.update_game_data(request.POST)
+    elif request.method == 'GET':
+        print("Sending Game save state")
+        return HttpResponse(game_data.game_save_data)
+    else:
+        messages.add_message(request, messages.INFO, "Method not allowed")
+        return HttpResponseRedirect("/error/")
+    return HttpResponse("")
 
 """ Skipping payment and adds all the games in the cart. For testing. Remove
     later """

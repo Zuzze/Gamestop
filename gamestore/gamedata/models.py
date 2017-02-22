@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Game(models.Model):
     GameCategory = (('A', 'Action'), ('RP', 'Role Playing'), ('FPS', 'FPS'), ('SM', 'Simulation'),
@@ -17,10 +18,9 @@ class Game(models.Model):
     def __unicode__(self):
         return self.title
 
-    #def add_to_cart(request):
-    #self.cart_games.add(game)
-    #self.save()
-        #return None
-
-    #def add_player(self, player_):
-    #    self.player
+"""
+class GameScoreBoard(models.Model):
+    game = models.ForeignKey(Game)
+    user = models.ForeignKey(User)
+    score = models.DecimalField(default=0)
+"""

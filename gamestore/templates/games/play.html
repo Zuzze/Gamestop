@@ -27,6 +27,7 @@ function csrfSafeMethod(method) {
   // these HTTP methods do not require CSRF protection
   return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
+
 $.ajaxSetup({
   beforeSend: function(xhr, settings) {
     var csrftoken = getCookie('csrftoken');
@@ -36,11 +37,18 @@ $.ajaxSetup({
   }
 });
 
+function show_message(message) {
+  $('#message').html(message);
+  $('#message').show().delay(2000).hide(0);
+}
+
 /* global $ */
 $(document).ready(function() {
   'use strict';
   $(window).on('message', function(evt) {
     //Note that messages from all origins are accepted
+
+    /* Split Url to get GameId */
     var url = ($(location). attr("href"));
     var url_split = url.split('/');
     var game_id = url_split[url_split.length-2];
@@ -48,47 +56,70 @@ $(document).ready(function() {
     /* Get data from sent message
      * Message types from game to service: SCORE, SAVE, LOAD_REQUEST, SETTING */
     var data = evt.originalEvent.data;
-    console.log(data.messageType);
+    var message_url = "/player/update_game_data/";
+    var message_type = "POST";
+    var success_message = "";
+    var fail_message = "";
     switch (data.messageType) {
       case 'SCORE':
-        console.log(data.score);
-        $.ajax({
-          type:"POST",
-          url:"/player/update_game_data/",
-          data: {
-            'gameId' : game_id,
-            'messageType': 'SCORE',
-            'score': data.score,
-          },
-          success: function(){
-            $('#message').text("Score Updated!");
-          }
+        message_type = "POST";
+        success_message = "Score saved!";
+        fail_message = "Score could not be saved!";
+          $.ajax({
+          type: message_type,
+          url: message_url,
+          data: { 'gameId' : game_id,
+                  'messageType' : 'SCORE',
+                  'score' : data.score,
+                },
+          success: function() { show_message(success_message); },
+          fail: function() { show_message(fail_message); }
         });
         break;
       case 'SAVE':
-        console.log(data.gameState);
-        /* $.ajax({
-          type:"POST",
-          url:"/player/update_game_data/",
-          data: {
-            'gameId' : game_id,
-            'messageType': 'SAVE',
-            'score': data.gameState,
-          },
-          success: function(){
-            $('#message').text("Score Updated!");
-          }
-        });*/
+        message_type = "POST";
+        success_message = "Game State Saved!";
+        fail_message = "Game State could not be Saved!";
+          $.ajax({
+          type: message_type,
+          url: message_url,
+          data: { 'gameId' : game_id,
+                  'messageType' : 'SAVE',
+                  'state' : JSON.stringify(data.gameState),
+                },
+          success: function() { show_message(success_message); },
+          fail: function() { show_message(fail_message); }
+        });
         break;
       case 'LOAD_REQUEST':
-        console.log(data.messageType);
-        /* Send LOAD */
+        message_type = "GET";
+        success_message = "Loading Game ...";
+        fail_message = "Game could not be loaded";
+          $.ajax({
+          type: message_type,
+          url: message_url,
+          data: { 'gameId' : game_id,
+                  'messageType' : 'LOAD_REQUEST',
+                },
+          success: function(data) {
+              show_message(success_message);
+              var msg = { "messageType": "LOAD",
+                          "gameState": JSON.parse(data)
+                        };
+              document.getElementById('gameFrame').contentWindow.postMessage(msg, "*");
+          },
+          fail: function() {
+              show_message(fail_message);
+              var msg = { "messageType": "ERROR",
+                          "info": "JSON.parse(data)",
+                        };
+              document.getElementById('gameFrame').contentWindow.postMessage(msg, "*");
+          }
+        });
         break;
       case 'SETTING':
         $('#iframeWrapper').width(data.options.width);
         $('#iframeWrapper').height(data.options.height);
-        console.log($('#iframeWrapper').width());
-        console.log($('#iframeWrapper').height());
         break;
       default:
         break;
@@ -100,13 +131,15 @@ $(document).ready(function() {
 
 {% block content %}
 <div class="row">
-  <div id="iframeWrapper" class="center-block" style="width:900px;"> <br><br>
-    <div class="embed-responsive embed-responsive-16by9">
-    <iframe  src="{{game.url}}" class="embed-responsive-item " />
-    </div>
-  </div>
   <div class="center-block" style="width:500px;"> <br>
-    <p class="lead" id="message">Play!</p>
+    <p class="lead" id="message"></p>
+  </div>
+</div>
+<div class="row">
+  <div id="iframeWrapper" class="center-block" style="width:900px;height:100px;"> <br><br>
+    <div class="embed-responsive embed-responsive-16by9">
+    <iframe  id="gameFrame" src="{{game.url}}" class="embed-responsive-item "/>
+    </div>
   </div>
 </div>
 {% endblock %}

@@ -1,7 +1,6 @@
 from django.db import models
 from gamedata.models import Game
 from django.contrib.auth.models import User
-#from django.contrib.postgres.fields import JSONField
 
 class Player(models.Model):
     user = models.ForeignKey(User)
@@ -46,16 +45,21 @@ class PlayerGameData(models.Model):
     game = models.ForeignKey('gamedata.Game')
     player_high_score = models.DecimalField(null=True, max_digits=16,
                         default=0, decimal_places=2)
-    #game_save_data = JSONField()
+    game_save_data = models.CharField(max_length=4096, null=True)
 
     def update_game_data(self, data):
-        print(data)
+        #print(data)
         if (data['messageType'] == 'SCORE'):
             score = int(data['score'])
             if self.player_high_score < score:
                 self.player_high_score = score
                 self.save()
-        #elif (data['messageType'] == 'SAVE'):
-        #    print(data['save_data'])
-        #    self.game_save_data = data['save_data']
-        #    self.save()
+            if self.game.highest_score < score:
+                self.game.highest_score = score
+                self.game.save()
+        elif (data['messageType'] == 'SAVE'):
+            self.game_save_data = data['state']
+            self.save()
+
+    def get_game_data(self, gameId):
+        pass
