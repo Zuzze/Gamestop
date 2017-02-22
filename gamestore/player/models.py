@@ -1,7 +1,7 @@
 from django.db import models
 from gamedata.models import Game
 from django.contrib.auth.models import User
-from django.contrib.postgres.fields import JSONField
+#from django.contrib.postgres.fields import JSONField
 
 class Player(models.Model):
     user = models.ForeignKey(User)
