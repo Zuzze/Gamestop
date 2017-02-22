@@ -41,7 +41,6 @@ class Player(models.Model):
             self.cart_games.add(game)
             self.save()
 
-"""
 class PlayerGameData(models.Model):
     player = models.ForeignKey('Player', related_name='game_data')
     game = models.ForeignKey('gamedata.Game')
@@ -60,4 +59,3 @@ class PlayerGameData(models.Model):
         #    print(data['save_data'])
         #    self.game_save_data = data['save_data']
         #    self.save()
-"""

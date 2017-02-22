@@ -7,7 +7,7 @@ class Game(models.Model):
     title = models.CharField(max_length=256, unique=True)
     url = models.URLField(null=False)
     dev = models.ForeignKey('developer.Developer', related_name="games")
-    #players = models.ManyToManyField('player.Player', related_name="games")
+    players = models.ManyToManyField('player.Player', related_name="games")
     category = models.CharField(choices=GameCategory, max_length=8, default='S')
     description = models.CharField(max_length=1024, null=True, blank=True)
     icon = models.URLField(null=True, blank=True)
