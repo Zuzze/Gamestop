@@ -52,9 +52,11 @@ class PlayerGameData(models.Model):
         if (data['messageType'] == 'SCORE'):
             score = int(data['score'])
             if self.player_high_score < score:
+                print("Update personal score")
                 self.player_high_score = score
                 self.save()
             if self.game.highest_score < score:
+                print("Update highest score")
                 self.game.highest_score = score
                 self.game.save()
         elif (data['messageType'] == 'SAVE'):

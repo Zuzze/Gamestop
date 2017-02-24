@@ -140,25 +140,16 @@ Gamestore
       <h2>Top 10</h2>
       <div class="list-group">
         <a href="#" class="list-group-item active">Top 10</a>
-        <a href="#" class="list-group-item">1. Zombie Nightmare</a>
-        <a href="#" class="list-group-item">2. MakeUp Heaven</a>
-        <a href="#" class="list-group-item">3. Warriors</a>
-        <a href="#" class="list-group-item">4. Let's play!</a>
-        <a href="#" class="list-group-item">5. Women</a>
-        <a href="#" class="list-group-item">6. Mafia Island</a>
-        <a href="#" class="list-group-item">7. Money Money Money</a>
-        <a href="#" class="list-group-item">8. PetWorld</a>
-        <a href="#" class="list-group-item">9. Nice name</a>
-        <a href="#" class="list-group-item">10. Someday</a>
+        {% for data in scoreboard %}
+        <a href="#" class="list-group-item">{{data.player_name}} {{data.score}} {{data.game_title}} {{data.game_category}}</a>
+        {% endfor %}
       </div>
       <h2>Categories</h2>
       <div class="list-group">
         <a href="#" class="list-group-item active">Categories</a>
-        <a href="#" class="list-group-item">Strategy</a>
-        <a href="#" class="list-group-item">Cartoon</a>
-        <a href="#" class="list-group-item">War</a>
-        <a href="#" class="list-group-item">Educational</a>
-        <a href="#" class="list-group-item">Children</a>
+        {% for category in game_categories %}
+        <a href="#" class="list-group-item">{{category}}</a>
+        {% endfor %}
       </div>
     </div><!--/.sidebar-offcanvas-->
   </div><!--/row-->

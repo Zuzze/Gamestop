@@ -4,16 +4,24 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from .models import Game
-from player.models import Player
+from player.models import Player, PlayerGameData
 
 def games(request):
-    print(Game.objects.filter(category='A'))
-    print(Game.objects.filter(category='RP'))
-    print(Game.objects.filter(category='FPS'))
-    print(Game.objects.filter(category='SM'))
-    print(Game.objects.filter(category='SR'))
-    print(Game.objects.filter(category='O'))
+    game_cat = ('Action', 'Role Playing', 'FPS', 'Simulation', 'Stratergy', 'Other')
+    top_scores = []
+    for game in Game.objects.all():
+        data = {};
+        for game_player in game.players.all():
+            game_data = game_player.game_data.get(game=game)
+            data['player_name'] = game_player.user.first_name;
+            data['score'] = game_data.player_high_score;
+            data['game_title'] = game.title;
+            data['game_category'] = game.category;
+            top_scores.append(data)
+
     context = {
+        'scoreboard' : top_scores,
+        'game_categories': game_cat,
         'games_action' : Game.objects.filter(category='A'),
         'games_rp' : Game.objects.filter(category='RP'),
         'games_fps' : Game.objects.filter(category='FPS'),
