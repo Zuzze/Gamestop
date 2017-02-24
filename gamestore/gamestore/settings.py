@@ -46,6 +46,12 @@ INSTALLED_APPS = [
     'developer',
     'player',
     'accounts',
+    #third party login
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE = [
@@ -160,8 +166,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 
 MEDIA_URL = '/media/'
 
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
 
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/home/'
 #STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # https://docs.djangoproject.com/en/1.10/ref/settings/#std:setting-STATICFILES_FINDERS
