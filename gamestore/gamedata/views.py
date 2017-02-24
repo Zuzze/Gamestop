@@ -7,8 +7,19 @@ from .models import Game
 from player.models import Player
 
 def games(request):
+    print(Game.objects.filter(category='A'))
+    print(Game.objects.filter(category='RP'))
+    print(Game.objects.filter(category='FPS'))
+    print(Game.objects.filter(category='SM'))
+    print(Game.objects.filter(category='SR'))
+    print(Game.objects.filter(category='O'))
     context = {
-        'all_games' : Game.objects.all()
+        'games_action' : Game.objects.filter(category='A'),
+        'games_rp' : Game.objects.filter(category='RP'),
+        'games_fps' : Game.objects.filter(category='FPS'),
+        'games_sim' : Game.objects.filter(category='SM'),
+        'games_strat' : Game.objects.filter(category='SR'),
+        'games_misc' : Game.objects.filter(category='O'),
     }
     return render(request, 'games/games.html', context)
 

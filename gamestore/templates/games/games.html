@@ -6,9 +6,7 @@ Gamestore
 
 {% block content %}
 <div class="container">
-
   <div class="row row-offcanvas row-offcanvas-right">
-
     <div class="col-xs-12 col-sm-9">
       <p class="pull-right visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
@@ -18,8 +16,111 @@ Gamestore
         <p>Hottest new games available at GameStop around the clock!</p>
       </div>
 
-      <div class="row">
-        {% for game in all_games %}
+      <p class ="lead"> Pick your category </p>
+      <button data-toggle="collapse" data-target="#action">ACTION</button>
+      <button data-toggle="collapse" data-target="#roleplay">ROLE PLAY</button>
+      <button data-toggle="collapse" data-target="#fps">FPS</button>
+      <button data-toggle="collapse" data-target="#sim">SIMULATION</button>
+      <button data-toggle="collapse" data-target="#strat">STRATEGY</button>
+      <button data-toggle="collapse" data-target="#misc">OTHER</button>
+      <br><br>
+      <div class="row collapse" id="action">
+        {% if not games_action %}
+        <p class ="lead"> No games in this category yet! </p>
+        {% endif %}
+        {% for game in games_action %}
+        <div class="col-xs-6 col-lg-4">
+            <h2 align="center">{{game.title}}</h2>
+            <!--add gamepicture here-->
+            {% if game.icon %}
+            <img align="center" height="80%" width="80%" src="{{game.icon}}"</img>
+            {% else %}
+            <img align="center" height="80%" width="80%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
+            {% endif %}
+            <h4 align="center">{{game.price}} &euro;</h4>
+            <p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p>
+        </div><!--/.col-xs-6.col-lg-4-->
+        {% endfor %}
+      </div><!--/row-->
+
+      <div class="row collapse" id="roleplay">
+        {% if not games_rp %}
+        <p class ="lead"> No games in this category yet! </p>
+        {% endif %}
+        {% for game in games_rp %}
+        <div class="col-xs-6 col-lg-4">
+            <h2 align="center">{{game.title}}</h2>
+            <!--add gamepicture here-->
+            {% if game.icon %}
+            <img align="center" height="80%" width="80%" src="{{game.icon}}"</img>
+            {% else %}
+            <img align="center" height="80%" width="80%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
+            {% endif %}
+            <h4 align="center">{{game.price}} &euro;</h4>
+            <p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p>
+        </div><!--/.col-xs-6.col-lg-4-->
+        {% endfor %}
+      </div><!--/row-->
+      <div class="row collapse" id="fps">
+        {% if not games_fps %}
+        <p class ="lead"> No games in this category yet! </p>
+        {% endif %}
+        {% for game in games_fps %}
+        <div class="col-xs-6 col-lg-4">
+            <h2 align="center">{{game.title}}</h2>
+            <!--add gamepicture here-->
+            {% if game.icon %}
+            <img align="center" height="80%" width="80%" src="{{game.icon}}"</img>
+            {% else %}
+            <img align="center" height="80%" width="80%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
+            {% endif %}
+            <h4 align="center">{{game.price}} &euro;</h4>
+            <p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p>
+        </div><!--/.col-xs-6.col-lg-4-->
+        {% endfor %}
+      </div><!--/row-->
+
+      <div class="row collapse" id="sim">
+        {% if not games_sim %}
+        <p class ="lead"> No games in this category yet! </p>
+        {% endif %}
+        {% for game in games_sim %}
+        <div class="col-xs-6 col-lg-4">
+            <h2 align="center">{{game.title}}</h2>
+            <!--add gamepicture here-->
+            {% if game.icon %}
+            <img align="center" height="80%" width="80%" src="{{game.icon}}"</img>
+            {% else %}
+            <img align="center" height="80%" width="80%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
+            {% endif %}
+            <h4 align="center">{{game.price}} &euro;</h4>
+            <p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p>
+        </div><!--/.col-xs-6.col-lg-4-->
+        {% endfor %}
+      </div><!--/row-->
+      <div class="row collapse" id="strat">
+        {% if not games_strat %}
+        <p class ="lead"> No games in this category yet! </p>
+        {% endif %}
+        {% for game in games_strat %}
+        <div class="col-xs-6 col-lg-4">
+            <h2 align="center">{{game.title}}</h2>
+            <!--add gamepicture here-->
+            {% if game.icon %}
+            <img align="center" height="80%" width="80%" src="{{game.icon}}"</img>
+            {% else %}
+            <img align="center" height="80%" width="80%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
+            {% endif %}
+            <h4 align="center">{{game.price}} &euro;</h4>
+            <p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p>
+        </div><!--/.col-xs-6.col-lg-4-->
+        {% endfor %}
+      </div><!--/row-->
+      <div class="row collapse" id="misc">
+        {% if not games_misc %}
+        <p class ="lead"> No games in this category yet! </p>
+        {% endif %}
+        {% for game in games_misc %}
         <div class="col-xs-6 col-lg-4">
             <h2 align="center">{{game.title}}</h2>
             <!--add gamepicture here-->
@@ -63,4 +164,4 @@ Gamestore
   </div><!--/row-->
   <hr>
 </div><!--/.container-->
-    {% endblock %}
+{% endblock %}
