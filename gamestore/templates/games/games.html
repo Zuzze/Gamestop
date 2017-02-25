@@ -4,6 +4,9 @@
 Gamestore
 {% endblock %}
 
+{% block script_jquery %}
+{% endblock %}
+
 {% block content %}
 <div class="container">
   <div class="row row-offcanvas row-offcanvas-right">
@@ -11,23 +14,14 @@ Gamestore
       <p class="pull-right visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
       </p>
-      <div class="jumbotron" align="center">
+      <div align="center">
         <h1>Gamestore</h1>
-        <p>Hottest new games available at GameStop around the clock!</p>
+        <h4>Hottest games available at GameStop around the clock!</h4>
       </div>
 
-      <p class ="lead"> Pick your category </p>
-      <button data-toggle="collapse" data-target="#action">ACTION</button>
-      <button data-toggle="collapse" data-target="#roleplay">ROLE PLAY</button>
-      <button data-toggle="collapse" data-target="#fps">FPS</button>
-      <button data-toggle="collapse" data-target="#sim">SIMULATION</button>
-      <button data-toggle="collapse" data-target="#strat">STRATEGY</button>
-      <button data-toggle="collapse" data-target="#misc">OTHER</button>
-      <br><br>
+      <div id="game-grid">
       <div class="row collapse" id="action">
-        {% if not games_action %}
-        <p class ="lead"> No games in this category yet! </p>
-        {% endif %}
+        <hr><h3 align="center"> Action games</h3><hr>
         {% for game in games_action %}
         <div class="col-xs-6 col-lg-4">
             <h2 align="center">{{game.title}}</h2>
@@ -44,9 +38,7 @@ Gamestore
       </div><!--/row-->
 
       <div class="row collapse" id="roleplay">
-        {% if not games_rp %}
-        <p class ="lead"> No games in this category yet! </p>
-        {% endif %}
+      <hr><h3 align="center"> Roleplaying </h3><hr>
         {% for game in games_rp %}
         <div class="col-xs-6 col-lg-4">
             <h2 align="center">{{game.title}}</h2>
@@ -61,10 +53,9 @@ Gamestore
         </div><!--/.col-xs-6.col-lg-4-->
         {% endfor %}
       </div><!--/row-->
+
       <div class="row collapse" id="fps">
-        {% if not games_fps %}
-        <p class ="lead"> No games in this category yet! </p>
-        {% endif %}
+        <hr><h3 align="center"> First Person Shooter</h3><hr>
         {% for game in games_fps %}
         <div class="col-xs-6 col-lg-4">
             <h2 align="center">{{game.title}}</h2>
@@ -81,9 +72,7 @@ Gamestore
       </div><!--/row-->
 
       <div class="row collapse" id="sim">
-        {% if not games_sim %}
-        <p class ="lead"> No games in this category yet! </p>
-        {% endif %}
+          <hr><h3 align="center"> Simulation games</h3><hr>
         {% for game in games_sim %}
         <div class="col-xs-6 col-lg-4">
             <h2 align="center">{{game.title}}</h2>
@@ -98,10 +87,9 @@ Gamestore
         </div><!--/.col-xs-6.col-lg-4-->
         {% endfor %}
       </div><!--/row-->
+
       <div class="row collapse" id="strat">
-        {% if not games_strat %}
-        <p class ="lead"> No games in this category yet! </p>
-        {% endif %}
+        <hr><h3 align="center"> Strategy games</h3><hr>
         {% for game in games_strat %}
         <div class="col-xs-6 col-lg-4">
             <h2 align="center">{{game.title}}</h2>
@@ -116,10 +104,9 @@ Gamestore
         </div><!--/.col-xs-6.col-lg-4-->
         {% endfor %}
       </div><!--/row-->
+
       <div class="row collapse" id="misc">
-        {% if not games_misc %}
-        <p class ="lead"> No games in this category yet! </p>
-        {% endif %}
+        <hr><h3 align="center"> Miscallaneous games</h3><hr>
         {% for game in games_misc %}
         <div class="col-xs-6 col-lg-4">
             <h2 align="center">{{game.title}}</h2>
@@ -134,25 +121,22 @@ Gamestore
         </div><!--/.col-xs-6.col-lg-4-->
         {% endfor %}
       </div><!--/row-->
+
     </div><!--/.col-xs-12.col-sm-9-->
+  </div><!--#game-grid-->
 
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-      <h2>Top 10</h2>
-      <div class="list-group">
-        <a href="#" class="list-group-item active">Top 10</a>
-        {% for data in scoreboard %}
-        <a href="#" class="list-group-item">{{data.player_name}} {{data.score}} {{data.game_title}} {{data.game_category}}</a>
-        {% endfor %}
-      </div>
       <h2>Categories</h2>
-      <div class="list-group">
-        <a href="#" class="list-group-item active">Categories</a>
-        {% for category in game_categories %}
-        <a href="#" class="list-group-item">{{category}}</a>
-        {% endfor %}
+      <div class="list-group"><hr>
+        <input type="checkbox" data-toggle="collapse" data-target="#action"> Action</input><hr>
+        <input type="checkbox" data-toggle="collapse" data-target="#roleplay"> Roleplaying </input><hr>
+        <input type="checkbox" data-toggle="collapse" data-target="#fps"> First Person Shooter</input><hr>
+        <input type="checkbox" data-toggle="collapse" data-target="#sim"> Simulation</input><hr>
+        <input type="checkbox" data-toggle="collapse" data-target="#strat"> Strategy</input><hr>
+        <input type="checkbox" data-toggle="collapse" data-target="#misc"> Other</input><hr>
       </div>
     </div><!--/.sidebar-offcanvas-->
   </div><!--/row-->
-  <hr>
 </div><!--/.container-->
+
 {% endblock %}

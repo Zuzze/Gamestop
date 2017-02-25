@@ -104,8 +104,12 @@ jQuery(document).ready(function(b){var a=b("#w2bSocialFloat");a.wrap('<div id="w
           <p class="lead"> {{game.description}}</p>
         </div>
         <div class="col-md-5">
+          <br><br>
+          <br><br>
           {% if game.icon %}
-          <img class="featurette-image img-responsive center-block" width="50%" src="{{game.icon}}" alt="Generic placeholder image">
+          <img align="center" width="70%" src="{{game.icon}}"</img>
+          {% else %}
+          <img align="center" width="70%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
           {% endif %}
         </div>
       </div>
