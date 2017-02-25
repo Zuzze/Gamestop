@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Game
+{{game.title}}
 {% endblock %}
 
 {% block script_jquery %}
@@ -9,28 +9,21 @@ Game
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
 <b:if cond='data:blog.pageType == &quot;item&quot;'>
 <style type='text/css'>
-/*<![CDATA[*/
 #w2bSocialFloat {clear:both;padding: 6px 0;display:block;background:#FFFFFF;}
 #w2bSocialFloat td{padding:4px;margin:0;border:none;}
 #w2bSocialFloat td iframe{max-width:82px;width:82px !important;}
 #w2bSocialFloat.w2bFloatSocial{position: fixed;top:0;z-index:9999999;border-bottom:1px solid #ccc;-webkit-box-shadow:0 1px 1px rgba(0,0,0,0.15);-moz-box-shadow:0 1px 1px rgba(0,0,0,0.15);box-shadow:0 1px 1px rgba(0,0,0,0.15);}
-/*]]>*/
 </style>
 <script type="text/javascript">
-/*<![CDATA[*/
 // Set the Top Offset
 $theOffset = 0;
-
 jQuery(document).ready(function(b){var a=b("#w2bSocialFloat");a.wrap('<div id="w2bSocialPlaceholder"></div>').closest("#w2bSocialPlaceholder").height(a.outerHeight());a.width(a.outerWidth());e=a.offset().top-$theOffset;b("#w2bSocialFloat iframe[src*=plusone]").closest("div").css("max-width","82px");b(window).scroll(function(){d=b(this).scrollTop();d>=e?a.addClass("w2bFloatSocial"):a.removeClass("w2bFloatSocial");f=b(".post");if(f.length!=0){c=f.outerHeight()+f.offset().top;d>=c?a.stop().animate({top:"-150px"}):a.stop().animate({top:$theOffset+"px"})}else d>=e?a.css("top",$theOffset+"px"):a.css("top","0")})});
-/*]]>*/
 </script>
 <script type="text/javascript">
-/*<![CDATA[*/
 // Twitter
 (function(a,b,c){var d=a.getElementsByTagName(b)[0];if(!a.getElementById(c)){a=a.createElement(b);a.id=c;a.src="//platform.twitter.com/widgets.js";d.parentNode.insertBefore(a,d)}})(document,"script","twitter-wjs");
 // Google + (plus)
 (function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="https://apis.google.com/js/plusone.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();
-/*]]>*/
 </script>
 </b:if>
 {% endblock %}
@@ -44,7 +37,7 @@ jQuery(document).ready(function(b){var a=b("#w2bSocialFloat");a.wrap('<div id="w
       <div class="col-md-7">
         <br>
         <h1 class="featurette-heading">{{game.title}}<span class="text-muted"></span></h1>
-        <p class="lead"> {{game.description}}</p>
+        <p class="lead" id="description"> {{game.description}}</p>
       </div>
       <div class="col-md-5">
         <br><br>
