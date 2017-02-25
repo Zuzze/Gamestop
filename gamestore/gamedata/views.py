@@ -78,11 +78,18 @@ def added_to_cart(request, id):
     except Game.DoesNotExist:
         return HttpResponseRedirect("/home/")
     else:
-        context = {
-            'game' : game,
-        }
-        player_.cart_games.add(game)
-        return render(request, 'games/added.html', context)
+        try:
+            player_game = player_.games.get(title=game.title)
+        except Game.DoesNotExist:
+            context = {
+                'game' : game,
+            }
+            player_.cart_games.add(game)
+            return render(request, 'games/added.html', context)
+        else:
+            messages.add_message(request, messages.INFO,
+            "You have already purchased the game")
+            return HttpResponseRedirect("/error/")
     return HttpResponseRedirect("/games")
 
 @login_required
