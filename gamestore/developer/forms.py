@@ -10,8 +10,7 @@ class AddGameForm(forms.Form):
     ('FPS', 'FPS'),
     ('SM', 'Simulation'),
     ('SR', 'Strategy'),
-    ('O', 'Other'),
-    ('S', 'Select Game Category'))
+    ('O', 'Other'))
 
     game_title = forms.CharField(label='Game Title', max_length=127,
         widget=forms.TextInput(attrs={'class': 'form-control',

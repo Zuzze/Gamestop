@@ -7,7 +7,7 @@ Register at GameStop
 
 {% block content %}
 <div class="row">
-  <div class="center-block" style="width:500px;">
+  <div class="center-block" style="width:80%">
     <form class="form-signin" method="post" action=""> {% csrf_token %}
         <h2 class="form-signin-heading">Registration Form</h2>
         <div class="help-inline">{{form.non_field_errors}}</div>
@@ -27,7 +27,7 @@ Register at GameStop
         {% endfor %} <br>
         </div>
         <br> <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        <button class="btn btn-lg btn-primary btn-block" style="max-width:160px" type="submit">Register</button>
     </form>
   </div>
 </div>
