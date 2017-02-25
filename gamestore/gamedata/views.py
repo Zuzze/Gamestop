@@ -4,9 +4,24 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from .models import Game
+from developer.models import Developer
 from player.models import Player, PlayerGameData
 
 def games(request):
+    user_type = '0'
+    if request.user.is_authenticated():
+        try:
+            player_ = Player.objects.get(user=request.user)
+        except Player.DoesNotExist:
+            pass
+        else:
+            user_type = '2'
+        try:
+            dev_ = Developer.objects.get(user=request.user)
+        except Developer.DoesNotExist:
+            pass
+        else:
+            user_type = '1'
     game_cat = ('Action', 'Role Playing', 'FPS', 'Simulation', 'Stratergy', 'Other')
     top_scores = []
     for game in Game.objects.all():
@@ -28,10 +43,25 @@ def games(request):
         'games_sim' : Game.objects.filter(category='SM'),
         'games_strat' : Game.objects.filter(category='SR'),
         'games_misc' : Game.objects.filter(category='O'),
+        'user_type': user_type,
     }
     return render(request, 'games/games.html', context)
 
 def game(request, id):
+    user_type = '0'
+    if request.user.is_authenticated():
+        try:
+            player_ = Player.objects.get(user=request.user)
+        except Player.DoesNotExist:
+            pass
+        else:
+            user_type = '2'
+        try:
+            dev_ = Developer.objects.get(user=request.user)
+        except Developer.DoesNotExist:
+            pass
+        else:
+            user_type = '1'
     try:
         game = Game.objects.get(id=id)
     except Game.DoesNotExist:
@@ -39,6 +69,7 @@ def game(request, id):
     else:
         context = {
             'game' : game,
+            'user_type': user_type,
         }
         return render(request, 'games/game.html', context)
     return HttpResponseRedirect("/games")
@@ -61,9 +92,6 @@ def play_game(request, id):
         }
         return render(request, 'games/play.html', context)
     return HttpResponseRedirect("/games")
-
-#@login_required
-#def pay(request, gametitle):
 
 @login_required
 def added_to_cart(request, id):
