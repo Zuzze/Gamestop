@@ -23,6 +23,7 @@ def games(request):
         else:
             user_type = '1'
     game_cat = ('Action', 'Role Playing', 'FPS', 'Simulation', 'Stratergy', 'Other')
+    """
     top_scores = []
     for game in Game.objects.all():
         data = {};
@@ -33,9 +34,10 @@ def games(request):
             data['game_title'] = game.title;
             data['game_category'] = game.category;
             top_scores.append(data)
+    """
 
     context = {
-        'scoreboard' : top_scores,
+        #'scoreboard' : top_scores,
         'game_categories': game_cat,
         'games_action' : Game.objects.filter(category='A'),
         'games_rp' : Game.objects.filter(category='RP'),

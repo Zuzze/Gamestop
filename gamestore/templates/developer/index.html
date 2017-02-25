@@ -18,8 +18,10 @@ Welcome to GameStop
               <th>#</th>
               <th>Game Title</th>
               <th>Game Price</th>
+              <th>Game added on</th>
               <th>Number of users</th>
               <th>Highest Score</th>
+              <th>Last Purchased</th>
             </tr>
           </thead>
           <tbody>
@@ -28,8 +30,14 @@ Welcome to GameStop
               <th>{{forloop.counter}}</th>
               <td><a href="{{game.url}}">{{game.title}}</a></td>
               <td>{{game.price}}</td>
+              <td>{{game.added}}</td>
               <td>{{game.players.count}}</td>
               <td>{{game.highest_score}}</td>
+              {% if game.players.count != 0 %}
+              <td>{{game.last_purchased}}</td>
+              {% else %}
+              <td> - </td>
+              {% endif %}
             </tr>
             {% endfor %}
           </tbody>

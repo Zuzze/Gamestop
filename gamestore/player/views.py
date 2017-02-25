@@ -98,7 +98,6 @@ def player_update_game_data(request):
     return HttpResponse("")
 
 def validate_payment_response(get_data):
-    print("Validating payment response")
     pid_ = get_data['pid']
     ref_ = get_data['ref']
     result_ = get_data['result']
@@ -112,7 +111,6 @@ def validate_payment_response(get_data):
 
     return True, ""
 
-#@login_required
 def payment_success(request):
     if request.method != 'GET':
         messages.add_message(request, messages.INFO, "Error in payment");
@@ -129,7 +127,6 @@ def payment_success(request):
         messages.add_message(request, messages.INFO, "Not registered as a player")
         return HttpResponseRedirect("/error/")
     else:
-        print("Adding games")
         player_.player_add_game()
     return HttpResponseRedirect("/home/")
 
