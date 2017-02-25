@@ -23,8 +23,8 @@ class Player(models.Model):
                     game_.players.add(self)
                     game_.save()
                     PlayerGameData(player=self, game=game_).save()
-                    #self.cart_games.remove()
-                    #self.cart_games.save()
+                    self.cart_games.remove(game_)
+                    self.save()
 
     def player_add_to_cart(self, game_title):
         try:
