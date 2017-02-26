@@ -2,6 +2,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, render_to_response
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
+from django.core import mail
+from django.contrib import messages
 
 from .forms import LoginForm, RegistrationForm
 from developer.models import Developer
@@ -9,7 +11,8 @@ from player.models import Player
 
 from hashlib import md5
 
-SALT = "gamestop-coolapp";
+SALT = 'gamestop-coolapp';
+BASE_URL = 'http://localhost:8000';
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -29,12 +32,12 @@ def login_view(request):
                     if player_.registered == False:
                         messages.add_message(request, messages.INFO,
                             "Kindly activate your account");
-                    return HttpResponseRedirect("/error/")
+                        return HttpResponseRedirect("/error/")
             else:
                 if dev_.registered == False:
                     messages.add_message(request, messages.INFO,
                         "Kindly activate your account");
-                return HttpResponseRedirect("/error/")
+                    return HttpResponseRedirect("/error/")
 
             login(request, user)
         return HttpResponseRedirect("/home/")
@@ -60,7 +63,12 @@ def register_view(request):
         activation_string = user.email + SALT;
         activation_key = md5(activation_string.encode("ascii")).hexdigest();
 
-        print("Activation Url - " + settings.BASE_URL + "/activate?user=" + str(user.id) + "&activation_key=" + activation_key)
+        activation_link = BASE_URL + "/accounts/activate?user=" + str(user.id) + "&activation_key=" + activation_key;
+        print("Activation Url - " + activation_link);
+
+        with mail.get_connection() as connection:
+            mail.EmailMessage("GameStop - Activate your account", "To activate your account, follow the link - " + activation_link,
+            "admin@gamestop.com", [email_], connection=connection,).send()
 
         if (user_type_ == '1'):
             dev_ = Developer(user=user)
@@ -81,6 +89,7 @@ def register_view(request):
     return render(request, 'accounts/register.html', context)
 
 def acitvate_account_view(request):
+    print("Entering account activation")
     if request.GET.get('user') is None or request.GET.get('activation_key') is None:
         messages.add_message(request, messages.INFO, "Activation link is not valid");
         return HttpResponseRedirect("/error/")
@@ -91,6 +100,7 @@ def acitvate_account_view(request):
         messages.add_message(request, messages.INFO, "Activation link is not valid");
         return HttpResponseRedirect("/error/")
 
+    print("Found user");
     #Compute hash again
     #activation_string = user.email + SALT;
     #activation_key = md5(activation_string.encode("ascii")).hexdigest();
@@ -108,14 +118,18 @@ def acitvate_account_view(request):
             messages.add_message(request, messages.INFO, "Not register as player or developer");
             return HttpResponseRedirect("/error/")
         else:
+            print("Found player");
             if player_.activation_key != request.GET['activation_key']:
                 messages.add_message(request, messages.INFO, "Activation link is not valid");
                 return HttpResponseRedirect("/error/")
             player_.registered = True;
+            player_.save()
     else:
+        print("Found developer");
         if dev_.activation_key != request.GET['activation_key']:
             messages.add_message(request, messages.INFO, "Activation link is not valid");
             return HttpResponseRedirect("/error/")
         dev_.registered = True;
+        dev_.save()
     login(request, user)
     return HttpResponseRedirect("/home")

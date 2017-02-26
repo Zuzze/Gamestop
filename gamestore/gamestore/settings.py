@@ -177,9 +177,9 @@ MEDIA_URL = '/media/'
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/home/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend';
+
 #STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # https://docs.djangoproject.com/en/1.10/ref/settings/#std:setting-STATICFILES_FINDERS
-
-
-BASE_URL = 'http://localhost:8000'
