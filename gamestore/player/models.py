@@ -9,6 +9,8 @@ secret_key = "1cb99704bf0d36de9d83a740009c37de";
 
 class Player(models.Model):
     user = models.ForeignKey(User)
+    registered = models.BooleanField(default=False)
+    activation_key = models.CharField(max_length=32, default="")
     cart_games = models.ManyToManyField('gamedata.Game', related_name="cart_games", blank=True)
 
     def __unicode__(self):
