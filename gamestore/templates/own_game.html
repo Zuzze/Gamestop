@@ -42,12 +42,13 @@ canvas {
 </style>
 </head>
 <body onload="startGame()">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 
 var unicorn;
 var lasers = [];
 var points;
-var loaded = true;
+var loaded = false;
 var loadedScore = 266;
 
 //=======================  <START GAME>  ========================
@@ -199,24 +200,63 @@ function everyinterval(n) {
     }
   }
 
-  function getPoints() {
-    alert(space.frameNo);
-      return space.frameNo
-    }
+function getPoints() {
+  //alert(space.frameNo);
+    return space.frameNo
+}
 
 //Make unicorn float
 function float(n) {
     unicorn.gravity = n;
 }
+
+function send_score() {
+  var score = getPoints();
+  var msg = {
+    "messageType": "SCORE",
+    "score": score,
+  };
+  window.parent.postMessage(msg, "*");
+}
+
+function save_game() {
+  var state = getPoints();
+  var msg = {
+    "messageType": "SAVE",
+    "gameState": state,
+  };
+  window.parent.postMessage(msg, "*");
+}
+
+function load_game() {
+  var msg = {
+    "messageType": "LOAD_REQUEST",
+  };
+  window.parent.postMessage(msg, "*");
+}
+
+$(document).ready(function() {
+  'use strict';
+  window.addEventListener("message", function(evt) {
+    if(evt.data.messageType === "LOAD") {
+      loadedScore = evt.data.gameState;
+      loaded = true;
+      startGame();
+    } else if (evt.data.messageType === "ERROR") {
+      alert(evt.data.info);
+    }
+  });
+});
 </script>
 
 <br>
 <p class="instructions-txt">Use the FLOAT button to stay in the air. Avoid deadly laser beams!</p>
 <button class="font-effect-neon" id="floatbtn" onmousedown="float(-0.2)" onmouseup="float(0.05)">Float</button><br>
-<button class="font-effect-neon" id="savebtn" onclick="getPoints()"=>Save game</button>
+<button class="font-effect-neon" id="savebtn" onclick="save_game()"=>Save game</button>
+<button class="font-effect-neon" id="loadbtn" onclick="load_game()"=>Load game</button>
 
 <h1 id="gameover" hidden> Game Over <h1>
 <h2 id="score" hidden></h2>
-<button id="submitScore" class="font-effect-neon" onclick="getPoints()">Submit Score</button>
+<button id="submitScore" class="font-effect-neon" onclick="send_score()">Submit Score</button>
 </body>
 </html>
