@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Barrio">
+<link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Rancho&effect=neon">
+<title>Unicorn Race</title>
 <style>
 canvas {
     border:1px solid #d3d3d3;
@@ -9,16 +13,31 @@ canvas {
 }
 
 #floatbtn {
-  font-size:30px;
-  margin-left: 300px;
+  font-size:60px;
+  margin-left: 250px;
   margin-top: 20px;
-  font-family: "Verdana", Helvetica, sans-serif;
+  margin-bottom: 20px;
+  font-family: 'Barrio', sans-serif;
+  width: 200px;
+  height: 75px;
+  background-color: transparent;
+  border: 0px;
 
 }
-  .instructions-txt {
-    font-family: "Verdana", Helvetica, sans-serif;
-    align-self: "center";
-  }
+.instructions-txt {
+    font-family: "Barrio", Helvetica, sans-serif;
+    margin-left: 100px;
+}
+#savebtn, #submitScore {
+  font-family: 'Barrio', sans-serif;
+  margin-left: 200px;
+  margin-top: 10px;
+  width: 300px;
+  height: 50px;
+  font-size: 30px;
+  border: 0px;
+  background-color: transparent;
+}
 }
 </style>
 </head>
@@ -32,18 +51,18 @@ var points;
 //=======================  <START GAME>  ========================
 function startGame() {
 //create unicorn
-    unicorn = new component(90, 120, "static_dirs/img/spaceunicornsmile.png", 10, 120, "image");
+    unicorn = new component(75, 120, "http://1.bp.blogspot.com/-DxugJ-_ZNKc/WLMk-i8JO1I/AAAAAAAAVYw/PF2O98l_s_QwMXjGp1YddLa9QkpQgjVzwCK4B/s1600/unicornCropped.png", 20, 120, "image");
     unicorn.gravity = 0.05;
-    points = new component("25px", "Verdana", "white", 280, 40, "text");
+    points = new component("25px", "Barrio", "white", 280, 40, "text");
     space.start();
 }
 
-  //create space background to the canvas
+//create space background as canvas
 var space = {
     canvas : document.createElement("canvas"),
     start : function() {
         this.canvas.width = 700;
-        this.canvas.height = 400;
+        this.canvas.height = 350;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -71,6 +90,7 @@ function component(width, height, color, x, y, type) {
     this.y = y;
     this.gravity = 0;
     this.gravitySpeed = 0;
+
     this.update = function() {
         ctx = space.context;
         if (type == "image") {
@@ -100,61 +120,67 @@ function component(width, height, color, x, y, type) {
             this.gravitySpeed = 0;
         }
     }
-    this.crashWith = function(otherobj) {
+
+    this.hitLaser = function(laser) {
         var myleft = this.x;
         var myright = this.x + (this.width);
         var mytop = this.y;
         var mybottom = this.y + (this.height);
-        var otherleft = otherobj.x;
-        var otherright = otherobj.x + (otherobj.width);
-        var othertop = otherobj.y;
-        var otherbottom = otherobj.y + (otherobj.height);
-        var crash = true;
-        if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
-            crash = false;
+        var laserleft = laser.x;
+        var laserright = laser.x + (laser.width);
+        var lasertop = laser.y;
+        var laserbottom = laser.y + (laser.height);
+        var hit = true;
+        if ((mybottom < lasertop) || (mytop > laserbottom) || (myright < laserleft) || (myleft > laserright)) {
+            hit = false;
         }
-        return crash;
+        return hit;
     }
 }
 
 function updateGameArea() {
-    var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+    var canvasWidth, height, gap, minHeight, maxHeight, minGap, maxGap;
 
-    //============GAME OVER==================
     for (i = 0; i < lasers.length; i += 1) {
-        if (unicorn.crashWith(lasers[i])) {
-            return;
-            document.getElementById("gameover").style.display ="";
-            document.getElementById("score").style.display ="";
-            document.getElementById("score").innerHTML = points;
+        if (unicorn.hitLaser(lasers[i])) {
+          //GAME OVER
+          //points=space.frameNo;
+          return;
         }
     }
+    //if no hit, new frame starts (one frame has 1 top and 1 bottom laser)
     space.clear();
     space.frameNo += 1;
-    if (space.frameNo == 1 || everyinterval(150)) {
-        x = space.canvas.width;
+
+    //every 150th frame add lasers
+    if (everyinterval(150)) {
+        canvasWidth = space.canvas.width;
+        //random(20, 200) height of the laser beam
         minHeight = 20;
         maxHeight = 200;
-        //height of the laser beam
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-        // gap between top and bottom lasers
+
+        // random(150, 270) gap between top and bottom lasers
         minGap = 150;
         maxGap = 270;
-        //create random obstacles based on min and max gap
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        lasers.push(new component(10, height, "#DCA2CD", x, 0));//lasers from top
-        lasers.push(new component(10, x - height - gap, "#DCA2CD", x, height + gap));//lasers from bottom
+
+        //create lasers: component(width, height, color, x, y, type)
+        lasers.push(new component(3, height, "#DCA2CD", canvasWidth, 0));//lasers from top
+        lasers.push(new component(3, canvasWidth - height - gap, "#DCA2CD", canvasWidth, height + gap));//lasers from bottom
     }
     for (i = 0; i < lasers.length; i += 1) {
         lasers[i].x += -1;
         lasers[i].update();
     }
+    //points are calculated based on frames
     points.text="SCORE: " + space.frameNo;
     points.update();
     unicorn.newPos();
     unicorn.update();
 }
 
+//if interval value can be divided by n, it is laser time
 function everyinterval(n) {
     if ((space.frameNo / n) % 1 == 0) {
       return true;
@@ -163,6 +189,11 @@ function everyinterval(n) {
     }
   }
 
+  function getPoints() {
+    alert(space.frameNo);
+      return space.frameNo
+    }
+
 //Make unicorn float
 function float(n) {
     unicorn.gravity = n;
@@ -170,10 +201,12 @@ function float(n) {
 </script>
 
 <br>
-<button id="floatbtn" onmousedown="float(-0.2)" onmouseup="float(0.03)">Float</button><br>
+<p class="instructions-txt">Use the FLOAT button to stay in the air. Avoid deadly laser beams!</p>
+<button class="font-effect-neon" id="floatbtn" onmousedown="float(-0.2)" onmouseup="float(0.05)">Float</button><br>
+<button class="font-effect-neon" id="savebtn" onclick="getPoints()"=>Save game</button>
+
 <h1 id="gameover" hidden> Game Over <h1>
 <h2 id="score" hidden></h2>
-<p class="instructions-txt">Use the FLOAT button to stay in the air. Avoid deadly laser beams!</p>
-<button>Save game</button><button>Submit Score</button>
+<button id="submitScore" class="font-effect-neon" onclick="getPoints()">Submit Score</button>
 </body>
 </html>
