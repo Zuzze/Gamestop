@@ -29,3 +29,6 @@ def error_view(request):
         else:
             context['user_type'] = '1'
     return render(request, 'error.html', context)
+
+def own_game(request):
+    return render(request, 'own_game.html')
