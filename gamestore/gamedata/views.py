@@ -45,6 +45,7 @@ def games(request):
         'games_sim' : Game.objects.filter(category='SM'),
         'games_strat' : Game.objects.filter(category='SR'),
         'games_misc' : Game.objects.filter(category='O'),
+        'games_all' : Game.objects.all(),
         'user_type': user_type,
     }
     return render(request, 'games/games.html', context)
