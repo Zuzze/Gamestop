@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Game(models.Model):
     GameCategory = (('A', 'Action'), ('RP', 'Role Playing'), ('FPS', 'FPS'), ('SM', 'Simulation'),
-                    ('SR', 'Stratergy'), ('O', 'Other'), ('S', 'Select Game Category'))
+                    ('SR', 'Stratergy'), ('O', 'Other'))
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=256, unique=True)
     url = models.URLField(null=False)
@@ -17,10 +17,3 @@ class Game(models.Model):
 
     def __unicode__(self):
         return self.title
-
-"""
-class GameScoreBoard(models.Model):
-    game = models.ForeignKey(Game)
-    user = models.ForeignKey(User)
-    score = models.DecimalField(default=0)
-"""
