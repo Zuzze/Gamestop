@@ -14,7 +14,10 @@ class RegistrationForm(forms.Form):
                                       'placeholder': 'Full Name'}))
     username = forms.CharField(label='Username', max_length=256,
         widget=forms.TextInput(attrs={'class': 'form-control',
-                                          'placeholder': 'Username'}))
+                                      'placeholder': 'Username'}))
+    email = forms.EmailField(label='Email',
+        widget=forms.EmailInput(attrs={'class': 'form-control',
+                                       'placeholder': 'Email'}))
     password = forms.CharField(label='Password',
         widget=forms.PasswordInput(attrs={'class': 'form-control',
                                           'placeholder': 'Password'}))
@@ -25,11 +28,12 @@ class RegistrationForm(forms.Form):
         widget=forms.RadioSelect(attrs={'class':'form-control'}))
 
     def clean(self):
-        name_ = self.cleaned_data['name']
+        #name_ = self.cleaned_data['name']
         username_ = self.cleaned_data['username']
+        #email_ = self.cleaned_data['email']
         password_ = self.cleaned_data['password']
         re_password_ = self.cleaned_data['re_password']
-        user_type_ = self.cleaned_data['user_type']
+        #user_type_ = self.cleaned_data['user_type']
 
         if password_ != re_password_:
             raise forms.ValidationError("Passwords do not match.")
