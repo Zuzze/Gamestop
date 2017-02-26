@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
+from django.utils import timezone
 
 class Game(models.Model):
     GameCategory = (('A', 'Action'), ('RP', 'Role Playing'), ('FPS', 'FPS'), ('SM', 'Simulation'),
@@ -14,6 +16,8 @@ class Game(models.Model):
     icon = models.URLField(null=True, blank=True)
     price = models.DecimalField(null=False, max_digits=8, default=5.0, decimal_places=2)
     highest_score = models.DecimalField(null=True, max_digits=16, default=0, decimal_places=2)
+    added = models.DateTimeField(auto_now_add=True)
+    last_purchased = models.DateTimeField(default=timezone.now)
 
     def __unicode__(self):
         return self.title

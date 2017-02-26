@@ -2,6 +2,11 @@ from django.db import models
 from gamedata.models import Game
 from django.contrib.auth.models import User
 
+from django.utils import timezone
+from datetime import datetime
+
+secret_key = "1cb99704bf0d36de9d83a740009c37de";
+
 class Player(models.Model):
     user = models.ForeignKey(User)
     cart_games = models.ManyToManyField('gamedata.Game', related_name="cart_games", blank=True)
@@ -10,21 +15,28 @@ class Player(models.Model):
         return self.name
 
     def player_add_game(self):
+        """ Check if player has already bought the game """
         for game in self.cart_games.all():
-            """ Check if player has already bought the game """
             try:
-                player_game = self.games.get(title=game.title)
+                player_game = self.games.get(id=game.id)
             except Game.DoesNotExist:
                 try:
-                    game_ = Game.objects.get(title=game.title)
+                    game_ = Game.objects.get(id=game.id)
                 except Game.DoesNotExist:
                     continue
                 else:
+                    """ Add cart games and remove from cart """
                     game_.players.add(self)
+                    game_.last_purchased = timezone.now()
+                    game.last_purchased
                     game_.save()
+                    print("Game purchased on {0}".format(game_.last_purchased))
                     PlayerGameData(player=self, game=game_).save()
                     self.cart_games.remove(game_)
                     self.save()
+            else:
+                self.cart_games.remove(player_game)
+                self.save()
 
     def player_add_to_cart(self, game_title):
         try:
