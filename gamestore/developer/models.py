@@ -12,5 +12,22 @@ class Developer(models.Model):
         icon=icon, price=price, category=category)
         game.save()
 
+    def modify_game(self, game, game_title_=None, game_url_=None, game_des_=None,
+                    game_icon_=None, game_price_=None, game_category_=None):
+        print("Modifying game")
+        if (game_title_):
+            game.title = game_title_;
+        if (game_url_):
+            game.url = game_url_;
+        if (game_des_):
+            game.description = game_des_;
+        if (game_icon_):
+            game.icon = game_icon_;
+        if (game_price_):
+            game.price = game_price_;
+        if (game_category_):
+            game.category = game_category_;
+        game.save();
+
     def __unicode__(self):
         return self.name
