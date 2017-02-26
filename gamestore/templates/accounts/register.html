@@ -7,7 +7,7 @@ Register at GameStop
 
 {% block content %}
 <div class="row">
-  <div class="center-block" style="width:80%">
+  <div class="center-block" style="width:80%; max-width:600px;">
     <form class="form-signin" method="post" action=""> {% csrf_token %}
         <h2 class="form-signin-heading">Registration Form</h2>
         <div class="help-inline">{{form.non_field_errors}}</div>
