@@ -61,7 +61,8 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #Comment to prevent XFrame error while testing own game
+    #'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'gamestore.urls'
@@ -95,18 +96,20 @@ DATABASES = {
     }
 }
 
+"""
 # Uncomment he following for Heroku and comment above
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'gamestore',
-#        'USER': 'gamestoreuser',
-#        'HOST': 'localhost',
-#        'PORT': '5432',
-#    }
-#}
-#import dj_database_url
-#DATABASES['default'] =  dj_database_url.config()
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'gamestore',
+        'USER': 'gamestoreuser',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+"""
 
 #DATABASES['default'] =  dj_database_url.config()
 

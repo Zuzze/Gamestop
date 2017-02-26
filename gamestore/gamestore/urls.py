@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^games/', include('gamedata.urls')),
     url(r'^error', views.error_view, name='error_view'),
     url(r'^fb/', include('allauth.urls')),
+    url(r'^own_game', views.own_game, name='own_game_view'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
