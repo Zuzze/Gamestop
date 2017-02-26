@@ -8,6 +8,7 @@ from gamedata.models import Game
 from hashlib import md5
 
 secret_key = "1cb99704bf0d36de9d83a740009c37de";
+BASE_URL = 'http://localhost:8000';
 
 @login_required
 def playerprofile(request):
@@ -58,6 +59,9 @@ def player_cart(request):
             'sid': sid,
             'pid': pid,
             'checksum': checksum,
+            'success_url': BASE_URL + '/player/payment/success',
+            'cancel_url': BASE_URL + '/player/payment/cancel',
+            'error_url': BASE_URL + '/player/payment/error',
         }
         return render(request, 'player/cart.html', context)
 

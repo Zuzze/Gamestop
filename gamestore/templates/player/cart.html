@@ -37,14 +37,14 @@ Cart
           <input type="hidden" name="pid" value="{{pid}}" />
           <input type="hidden" name="sid" value="{{sid}}" />
           <input type="hidden" name="success_url"
-            value="http://localhost:8000/player/payment/success" />
+            value="{{success_url}}" />
           <input type="hidden" name="cancel_url"
-            value="http://localhost:8000/player/payment/cancel" />
+            value="{{cancel_url}}" />
           <input type="hidden" name="error_url"
-            value="http://localhost:8000/player/payment/error" />
+            value="{{error_url}}" />
           <input type="hidden" name="checksum" value="{{checksum}}" />
           <input type="hidden" name="amount" value="{{amount}}" />
-          <!-- <input type="hidden" name="dev" value="{{amount}}" /> -->
+          <input type="hidden" name="dev" value="{{amount}}" />
           <p align="center"><input type="submit" class="btn btn-default" value="Pay now"/></p>
         </form>
       </div>
