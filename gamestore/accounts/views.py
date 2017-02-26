@@ -1,6 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, render_to_response
-
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 
@@ -52,10 +51,11 @@ def register_view(request):
     if request.method == 'POST' and form.is_valid():
         name_ = form.cleaned_data['name']
         username_ = form.cleaned_data['username']
+        email_ = form.cleaned_data['email']
         password_ = form.cleaned_data['password']
         re_password_ = form.cleaned_data['re_password']
         user_type_ = form.cleaned_data['user_type']
-        user = User.objects.create_user(first_name=name_, username=username_, password=password_)
+        user = User.objects.create_user(first_name=name_, username=username_, password=password_, email=email_)
 
         activation_string = user.email + SALT;
         activation_key = md5(activation_string.encode("ascii")).hexdigest();
