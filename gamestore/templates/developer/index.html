@@ -28,7 +28,10 @@ Welcome to GameStop
             {% for game in games %}
             <tr>
               <th>{{forloop.counter}}</th>
-              <td><a href="{{game.url}}">{{game.title}}</a></td>
+              <!--<form action="/dev/modify/{{game.id}}/" method="post"> {% csrf_token %}
+                <td><button type="submit" value="submit" name="modify_game" class="btn-link">{{game.title}}</button></td>
+              </form> -->
+              <td> <a href="/dev/modify/{{game.id}}/">{{game.title}}</a></td>
               <td>{{game.price}}</td>
               <td>{{game.added}}</td>
               <td>{{game.players.count}}</td>

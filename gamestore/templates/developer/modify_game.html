@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Modify/Remove your Game
+{% endblock %}
+
+
+{% block content %}
+<p><br></p>
+<div class="row">
+  <div class="center-block" style="width:80%;">
+    <p class="lead">Modify your game</p>
+    <form class="form-signin" method="post" action=""> {% csrf_token %}
+      <div class="help-inline">{{form.non_field_errors}}</div>
+      {% for field in form %}
+        {{ field.errors }}
+         <label for="{{field.name}}" class="{{form.label_class}}">
+          {{field.label}}
+        </label> {{field}} <br>
+      {% endfor %} <br>
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
+</div>
+<hr><br>
+<div class="row">
+  <div class="center-block" style="width:80%;">
+    <p class="lead">Or remove <a href="/dev/delete/{{game.id}}"{{game.title}}</a> from GameStop</p>
+  </div>
+</div>
+{% endblock %}
