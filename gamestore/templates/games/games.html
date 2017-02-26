@@ -14,8 +14,7 @@ Gamestore
       <p class="pull-right visible-xs"> </p>
       <div class="jumbotron" align="center">
         <h1>Gamestore</h1>
-        <h4>Hottest games at GameStop around the clock!</h4>
-      </div>
+        <br><br>
 
       <div id="game-grid">
         <h4 id=no-games-message></h4>
@@ -28,12 +27,12 @@ Gamestore
           <tr>
           {% for game in games_all %}
           <tr>
-            <td align="center" width="30%">{% if game.icon %}
-            <img align="center" style="max-width:200px;" src="{{game.icon}}"</img>
+            <td align="center">{% if game.icon %}
+            <img align="center" style="max-width:200px;" style="max-height:200px;" src="{{game.icon}}"</img>
             {% else %}
-            <img align="center"  src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
+            <img align="center" style="width:180px;" style="height:180px;" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
             {% endif %}</td>
-            <td><h3 align="center">{{game.title}}</h3></td>
+            <td><a href="/games/{{game.id}}" align="center"><h3>{{game.title}}</h3></a></td>
             <td><p align="center" hidden>{{game.category}}</p></td>
             <td><h4 align="center">{{game.price}} &euro;</h4><p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p></td>
           </tr>
@@ -41,6 +40,7 @@ Gamestore
         </table>
       </div><!--#game-grid-->
     </div><!--/.col-xs-12.col-sm-9-->
+</div>
 
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
       <h2>Categories</h2>
@@ -52,9 +52,9 @@ Gamestore
         <a href="#" id="SR" class="list-group-item active" onclick="filterCategory(this.id)">Strategy</a>
         <a href="#" id="O" class="list-group-item active" onclick="filterCategory(this.id)">Other</a>
       </div>
-      <h3> Search </h3>
-      <input type="text" id="searchbar" width="90%" onkeyup="search()" placeholder="Search for games...">
     </div><!--/.sidebar-offcanvas-->
+    <h2>Search</h2>
+    <input type="text" id="searchbar" onkeyup="search()" placeholder="Search for games...">
   </div><!--/row-->
 </div><!--/.container-->
 
