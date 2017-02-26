@@ -23,21 +23,7 @@ def games(request):
         else:
             user_type = '1'
     game_cat = ('Action', 'Role Playing', 'FPS', 'Simulation', 'Stratergy', 'Other')
-    """
-    top_scores = []
-    for game in Game.objects.all():
-        data = {};
-        for game_player in game.players.all():
-            game_data = game_player.game_data.get(game=game)
-            data['player_name'] = game_player.user.first_name;
-            data['score'] = game_data.player_high_score;
-            data['game_title'] = game.title;
-            data['game_category'] = game.category;
-            top_scores.append(data)
-    """
-
     context = {
-        #'scoreboard' : top_scores,
         'game_categories': game_cat,
         'games_action' : Game.objects.filter(category='A'),
         'games_rp' : Game.objects.filter(category='RP'),
@@ -114,6 +100,7 @@ def added_to_cart(request, id):
         except Game.DoesNotExist:
             context = {
                 'game' : game,
+                'user_type': '2',
             }
             player_.cart_games.add(game)
             return render(request, 'games/added.html', context)

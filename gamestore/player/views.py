@@ -37,7 +37,6 @@ def player_shop_view(request):
 
 @login_required
 def player_cart(request):
-    user_type = '2'
     try:
         player_ = Player.objects.get(user=request.user)
     except Player.DoesNotExist:
@@ -62,6 +61,7 @@ def player_cart(request):
             'success_url': BASE_URL + '/player/payment/success',
             'cancel_url': BASE_URL + '/player/payment/cancel',
             'error_url': BASE_URL + '/player/payment/error',
+            'user_type': '2',
         }
         return render(request, 'player/cart.html', context)
 
