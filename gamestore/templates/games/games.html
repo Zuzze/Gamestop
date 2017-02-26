@@ -12,132 +12,105 @@ Gamestore
   <div class="row row-offcanvas row-offcanvas-right">
     <div class="col-xs-12 col-sm-9">
       <p class="pull-right visible-xs"> </p>
-      <div align="center">
+      <div class="jumbotron" align="center">
         <h1>Gamestore</h1>
-        <h4>Hottest games available at GameStop around the clock!</h4>
+        <h4>Hottest games at GameStop around the clock!</h4>
       </div>
 
       <div id="game-grid">
-      <div class="row collapse" id="action">
-        <hr><h3 align="center"> Action games</h3><hr>
-        {% for game in games_action %}
-        <div class="col-xs-6 col-lg-4">
-            <h2 align="center">{{game.title}}</h2>
-            <!--add gamepicture here-->
-            {% if game.icon %}
-            <img align="center" height="80%" width="80%" src="{{game.icon}}"</img>
+        <h4 id=no-games-message></h4>
+        <table align="center" id="all-games">
+          <tr class="header">
+            <th align="center" style="width:20%;"></th>
+            <th style="width:60%;"></th>
+            <th style="width:10%;"></th>
+            <th style="width:10%;"></th>
+          <tr>
+          {% for game in games_all %}
+          <tr>
+            <td align="center" width="30%">{% if game.icon %}
+            <img align="center" style="max-width:200px;" src="{{game.icon}}"</img>
             {% else %}
-            <img align="center" height="80%" width="80%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
-            {% endif %}
-            <h4 align="center">{{game.price}} &euro;</h4>
-            <p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        {% endfor %}
-      </div><!--/row-->
-
-      <div class="row collapse" id="roleplay">
-      <hr><h3 align="center"> Roleplaying </h3><hr>
-        {% for game in games_rp %}
-        <div class="col-xs-6 col-lg-4">
-            <h2 align="center">{{game.title}}</h2>
-            <!--add gamepicture here-->
-            {% if game.icon %}
-            <img align="center" height="80%" width="80%" src="{{game.icon}}"</img>
-            {% else %}
-            <img align="center" height="80%" width="80%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
-            {% endif %}
-            <h4 align="center">{{game.price}} &euro;</h4>
-            <p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        {% endfor %}
-      </div><!--/row-->
-
-      <div class="row collapse" id="fps">
-        <hr><h3 align="center"> First Person Shooter</h3><hr>
-        {% for game in games_fps %}
-        <div class="col-xs-6 col-lg-4">
-            <h2 align="center">{{game.title}}</h2>
-            <!--add gamepicture here-->
-            {% if game.icon %}
-            <img align="center" height="80%" width="80%" src="{{game.icon}}"</img>
-            {% else %}
-            <img align="center" height="80%" width="80%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
-            {% endif %}
-            <h4 align="center">{{game.price}} &euro;</h4>
-            <p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        {% endfor %}
-      </div><!--/row-->
-
-      <div class="row collapse" id="sim">
-          <hr><h3 align="center"> Simulation games</h3><hr>
-        {% for game in games_sim %}
-        <div class="col-xs-6 col-lg-4">
-            <h2 align="center">{{game.title}}</h2>
-            <!--add gamepicture here-->
-            {% if game.icon %}
-            <img align="center" height="80%" width="80%" src="{{game.icon}}"</img>
-            {% else %}
-            <img align="center" height="80%" width="80%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
-            {% endif %}
-            <h4 align="center">{{game.price}} &euro;</h4>
-            <p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        {% endfor %}
-      </div><!--/row-->
-
-      <div class="row collapse" id="strat">
-        <hr><h3 align="center"> Strategy games</h3><hr>
-        {% for game in games_strat %}
-        <div class="col-xs-6 col-lg-4">
-            <h2 align="center">{{game.title}}</h2>
-            <!--add gamepicture here-->
-            {% if game.icon %}
-            <img align="center" height="80%" width="80%" src="{{game.icon}}"</img>
-            {% else %}
-            <img align="center" height="80%" width="80%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
-            {% endif %}
-            <h4 align="center">{{game.price}} &euro;</h4>
-            <p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        {% endfor %}
-      </div><!--/row-->
-
-      <div class="row collapse" id="misc">
-        <hr><h3 align="center"> Miscallaneous games</h3><hr>
-        {% for game in games_misc %}
-        <div class="col-xs-6 col-lg-4">
-            <h2 align="center">{{game.title}}</h2>
-            <!--add gamepicture here-->
-            {% if game.icon %}
-            <img align="center" height="80%" width="80%" src="{{game.icon}}"</img>
-            {% else %}
-            <img align="center" height="80%" width="80%" src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
-            {% endif %}
-            <h4 align="center">{{game.price}} &euro;</h4>
-            <p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        {% endfor %}
-      </div><!--/row-->
+            <img align="center"  src="https://image.freepik.com/free-icon/educational-questions-hand-drawn-speech-bubble_318-73005.jpg"</img>
+            {% endif %}</td>
+            <td><h3 align="center">{{game.title}}</h3></td>
+            <td><p align="center" hidden>{{game.category}}</p></td>
+            <td><h4 align="center">{{game.price}} &euro;</h4><p align="center"><a class="btn btn-default" href="/games/{{game.id}}" role="button">See more ></a></p></td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div><!--#game-grid-->
     </div><!--/.col-xs-12.col-sm-9-->
-  </div><!--#game-grid-->
 
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
       <h2>Categories</h2>
-      <div class="list-group"><hr>
-        <input type="checkbox" data-toggle="collapse" data-target="#action"> Action</input><hr>
-        <input type="checkbox" data-toggle="collapse" data-target="#roleplay"> Roleplaying </input><hr>
-        <input type="checkbox" data-toggle="collapse" data-target="#fps"> First Person Shooter</input><hr>
-        <input type="checkbox" data-toggle="collapse" data-target="#sim"> Simulation</input><hr>
-        <input type="checkbox" data-toggle="collapse" data-target="#strat"> Strategy</input><hr>
-        <input type="checkbox" data-toggle="collapse" data-target="#misc"> Other</input><hr>
+      <div class="list-group">
+        <a href="#" id="RP" class="list-group-item active" onclick="filterCategory(this.id)">Roleplaying</a>
+        <a href="#" id="FPS" class="list-group-item active" onclick="filterCategory(this.id)">First Person Shooter</a>
+        <a href="#" id="A" class="list-group-item active" onclick="filterCategory(this.id)">Action</a>
+        <a href="#" id="SM" class="list-group-item active" onclick="filterCategory(this.id)">Simulation</a>
+        <a href="#" id="SR" class="list-group-item active" onclick="filterCategory(this.id)">Strategy</a>
+        <a href="#" id="O" class="list-group-item active" onclick="filterCategory(this.id)">Other</a>
       </div>
+      <h3> Search </h3>
+      <input type="text" id="searchbar" width="90%" onkeyup="search()" placeholder="Search for games...">
     </div><!--/.sidebar-offcanvas-->
   </div><!--/row-->
 </div><!--/.container-->
 
 <!--onclick="this.style.color='#fffff'; this.style.backgroundColor = '#90EE90'"-->
 <script>
-  document.getElementById("game-grid").style.visibility = "visible";
+function search() {
+  // Declare variables
+  var input, filter, games, tr, td, i, bool;
+  input = document.getElementById("searchbar");
+  filter = input.value.toUpperCase();
+  games = document.getElementById("all-games");
+  tr = games.getElementsByTagName("tr");
+  bool = false;
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++){
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+        bool = true;
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  if(bool===false){
+    document.getElementById("no-games-message").innerHTML = "No games found, try other search";
+  } else {
+    document.getElementById("no-games-message").innerHTML = "";
+  }
+}
+
+function filterCategory(category) {
+  var games, tr, td, i, bool;
+  games = document.getElementById("all-games");
+  tr = games.getElementsByTagName("tr");
+  bool = false
+
+  for (i = 0; i < tr.length; i++){
+    td = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+    //if category abbreviation equals game's category -> show
+        if (td.innerHTML.indexOf(category) > -1) {
+          tr[i].style.display = "";
+          bool = true;
+        } else {
+          tr[i].style.display = "none";
+        }
+    }
+  }
+  if(bool === false){
+    document.getElementById("no-games-message").innerHTML = "There are no games in this category yet";
+  } else {
+        document.getElementById("no-games-message").innerHTML = "";
+  }
+}
 </script>
 {% endblock %}
